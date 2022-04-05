@@ -20,24 +20,18 @@ class UserSeeder extends Seeder
         $data = [
                 [
                     'name' => 'Fermin',
-                    'email' => 'ferminalvarez013+debug1@gmail.com',
-                    'password' =>  Hash::make('FerminDebug', [
-                        'rounds' => 12,
-                    ]),
+                    'email' => 'feeralvarez013+debug1@gmail.com',
+                    'password' =>  Hash::make('FerminDebug')
                 ],
                 [
                     'name' => 'Alvarez',
-                    'email' => 'ferminalvarez013+debug2@gmail.com',
-                    'password' =>  Hash::make('FerminDebug', [
-                        'rounds' => 12,
-                    ])
+                    'email' => 'feeralvarez013+debug2@gmail.com',
+                    'password' =>  Hash::make('FerminDebug')
                 ],   
                 [
                     'name' => Str::random(10),
-                    'email' => 'ferminalvarez013+debug3@gmail.com',
-                    'password' =>  Hash::make('FerminDebug', [
-                        'rounds' => 12,
-                    ])
+                    'email' => 'feeralvarez013+debug3@gmail.com',
+                    'password' =>  Hash::make('FerminDebug')
                 ]
         ];
 
