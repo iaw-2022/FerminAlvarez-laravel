@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('have', function (Blueprint $table) {
-            $table->decimal('price');
+            $table->decimal('price')->nullable();
             $table->string('ISBN');
             $table->foreign('ISBN')->references('ISBN')->on('books');
             $table->foreignId(Bookshop::class);
