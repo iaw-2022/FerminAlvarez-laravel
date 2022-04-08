@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bookshop;
+use App\Models\WrittenBy;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(BookSeeder::class);
+        $this->call(AuthorSeeder::class);
+        $this->call(WrittenBySeeder::class);
+        $this->call(BookshopSeeder::class);
+        $this->call(HaveSeeder::class);
+        $this->call(SuscriberSeeder::class);
+        $this->call(SubscribedSeeder::class);
     }
 }
