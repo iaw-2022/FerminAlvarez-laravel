@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class HaveSeeder extends Seeder
+class HasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -37,6 +37,6 @@ class HaveSeeder extends Seeder
                 'Bookshop' => '1'
             ]
         ];
-        DB::table('have')->insert($data);
+        DB::table('has')->insert($data);
     }
 }

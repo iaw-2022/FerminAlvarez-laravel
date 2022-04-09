@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('have', function (Blueprint $table) {
+        Schema::create('has', function (Blueprint $table) {
             $table->decimal('price')->nullable();
             $table->string('ISBN');
             $table->foreign('ISBN')->references('ISBN')->on('books');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('have');
+        Schema::dropIfExists('has');
     }
 };
