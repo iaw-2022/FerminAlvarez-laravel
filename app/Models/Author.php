@@ -19,4 +19,8 @@ class Author extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function books(){
+        return $this->belongsToMany(Book::class,'written_by','Author','ISBN');
+    }
 }

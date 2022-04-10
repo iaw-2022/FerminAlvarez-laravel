@@ -16,6 +16,9 @@ class Book extends Model
      *
      * @var array<int, string>
      */
+
+    protected $primaryKey = 'ISBN';
+
     protected $fillable = [
         'ISBN',
         'name',
@@ -25,4 +28,8 @@ class Book extends Model
         'category',
         'image_link',
     ];
+
+    public function authors(){
+        return $this->belongsToMany(Author::class,'written_by','ISBN','Author');
+    }
 }

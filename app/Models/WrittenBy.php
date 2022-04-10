@@ -20,4 +20,6 @@ class WrittenBy extends Model
         'Author',
         'Book'
     ];
+
+
 }

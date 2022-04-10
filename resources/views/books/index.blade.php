@@ -11,6 +11,7 @@
                 <th>Editorial</th>
                 <th>Total de páginas</th>
                 <th>Fecha de publicación</th>
+                <th>Autor/es</th>
                 <th>Categoría</th>
             </tr>
         </thead>
@@ -27,6 +28,12 @@
                     <td>{{$book->publisher}}</td>
                     <td>{{$book->total_pages}}</td>
                     <td>{{$book->published_at}}</td>
+                    <td>
+                        @foreach ($book->authors as $author)
+                            {{$author->name}}
+                            <br>
+                        @endforeach
+                    </td>
                     <td>{{$book->category}}</td>
                 </tr>
             @endforeach
