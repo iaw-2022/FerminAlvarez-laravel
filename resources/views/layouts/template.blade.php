@@ -11,7 +11,7 @@
 
     <link href="css/styles.css" rel="stylesheet">
 
-    <title>Hello, world!</title>
+    <title>@yield('title')</title>
   </head>
   <body>
 

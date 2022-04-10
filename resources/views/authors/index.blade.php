@@ -1,5 +1,5 @@
 @extends('layouts.template')
-
+@section('title', 'Autores')
 @section('content')
 <div class="table-container table-responsive-xxl d-flex aligns-items-center mt-3">
     <table class="table align-middle mb-0 table-striped ">

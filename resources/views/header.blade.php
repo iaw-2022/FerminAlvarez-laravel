@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white text-center pb-0 pt-0">
+                <a href="authors" class="nav-link text-white text-center pb-0 pt-0">
                     <span class="material-icons-outlined">
                         face
                     </span>
@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white text-center pb-0 pt-0">
+                <a href="bookshops" class="nav-link text-white text-center pb-0 pt-0">
                     <span class="material-icons-outlined">
                         store
                     </span>
