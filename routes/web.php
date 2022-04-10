@@ -17,8 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('books', 'App\Http\Controllers\BookController');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
