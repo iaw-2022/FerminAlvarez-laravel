@@ -21,6 +21,8 @@ Route::resource('books', 'App\Http\Controllers\BookController');
 
 Route::resource('authors', 'App\Http\Controllers\AuthorController');
 
+Route::resource('bookshops', 'App\Http\Controllers\BookshopController');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

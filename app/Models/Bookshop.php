@@ -9,7 +9,7 @@ class Bookshop extends Model
 {
     use HasFactory;
 
-    protected $table = 'books';
+    protected $table = 'bookshops';
 
     /**
      * The attributes that are mass assignable.
