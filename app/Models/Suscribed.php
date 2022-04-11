@@ -4,13 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
-class Suscriber extends Model
+class Suscribed extends Model
 {
     use HasFactory;
 
-    protected $table = 'suscribers';
+    protected $table = 'subscribed';
 
     /**
      * The attributes that are mass assignable.
@@ -18,10 +17,7 @@ class Suscriber extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'email'
+        'email',
+        'ISBN'
     ];
-
-    public function books(){
-        return $this->belongsToMany(Book::class,'subscribed','email','ISBN','email','ISBN');
-    }
 }

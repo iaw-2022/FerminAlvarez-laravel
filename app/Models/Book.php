@@ -36,4 +36,8 @@ class Book extends Model
     public function bookshops(){
         return $this->belongsToMany(Bookshop::class,'has','ISBN','Bookshop')->withPivot('price');
     }
+
+    public function subscribers(){
+        return $this->belongsToMany(Suscriber::class,'subscribed','ISBN','email');
+    }
 }

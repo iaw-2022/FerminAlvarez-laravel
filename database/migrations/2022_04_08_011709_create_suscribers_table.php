@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('suscribers', function (Blueprint $table) {
-            $table->string('email')->primary();
+            $table->id();
+            $table->string('email')->unique();
             $table->timestamps();
         });
     }

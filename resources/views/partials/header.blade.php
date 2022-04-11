@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white text-center pb-0 pt-0">
+                <a href="/suscribers" class="nav-link text-white text-center pb-0 pt-0">
                     <span class="material-icons-outlined">
                         local_library
                     </span>
