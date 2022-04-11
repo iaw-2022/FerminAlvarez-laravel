@@ -1,10 +1,7 @@
 @extends('layouts.template')
 
-@section('css')
-
-@endsection
-
 @section('title', 'Autores')
+
 @section('content')
     <div class="row">
         <div class="aligns-items-center mt-3 col-lg-12">

@@ -1,10 +1,7 @@
 @extends('layouts.template')
 
-@section('css')
-
-@endsection
-
 @section('title', 'Autores')
+
 @section('content')
 
     <div class="card text-center ">
