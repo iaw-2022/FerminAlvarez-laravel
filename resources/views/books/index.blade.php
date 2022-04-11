@@ -29,7 +29,7 @@
                                 </td>
                                 <td>{{$book->ISBN}}</td>
                                 <td>
-                                    <a href="/book-prices/{{$book->ISBN}}" class ="fw-bold mb-1 text-decoration-none">
+                                    <a href="/book/{{$book->ISBN}}" class ="fw-bold mb-1 text-decoration-none">
                                         {{$book->name}}
                                     </a>
                                 </td>

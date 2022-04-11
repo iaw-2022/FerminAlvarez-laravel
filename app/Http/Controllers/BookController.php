@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Book;
-use App\Models\Bookshop;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -51,7 +50,8 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        //
+        $book = Book::find($id);
+        return view('books.show')->with('book',$book);
     }
 
     /**
@@ -86,17 +86,5 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function showPrices($id)
-    {
-        $book = Book::find($id);
-        return view('books.showprices')->with('book',$book);
     }
 }

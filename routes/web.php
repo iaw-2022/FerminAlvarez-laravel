@@ -24,9 +24,13 @@ Route::resource('authors', 'App\Http\Controllers\AuthorController');
 
 Route::resource('bookshops', 'App\Http\Controllers\BookshopController');
 
+Route::resource('suscribers', 'App\Http\Controllers\SuscriberController');
+
 Route::get('/bookshop/{id}',[App\Http\Controllers\BookshopController::class, 'show']);
 
-Route::get('/book-prices/{id}',[App\Http\Controllers\BookController::class, 'showPrices']);
+Route::get('/book/{id}',[App\Http\Controllers\BookController::class, 'show']);
+
+Route::get('/suscriber/{email}',[App\Http\Controllers\SuscriberController::class, 'show']);
 
 
 
