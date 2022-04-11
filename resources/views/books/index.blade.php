@@ -3,6 +3,7 @@
 @section('title', 'Libros')
 
 @section('content')
+
     <div class="row">
         <div class="aligns-items-center mt-3 col-lg-12">
                 <table class="table align-middle table-striped display nowrap" cellspacing="0" id="books-table" width=100%>
@@ -27,7 +28,11 @@
                                     class="img-thumbnail img-responsive book-img">
                                 </td>
                                 <td>{{$book->ISBN}}</td>
-                                <td class ="fw-bold mb-1">{{$book->name}}</td>
+                                <td>
+                                    <a href="/book-prices/{{$book->ISBN}}" class ="fw-bold mb-1 text-decoration-none">
+                                        {{$book->name}}
+                                    </a>
+                                </td>
                                 <td>{{$book->publisher}}</td>
                                 <td>{{$book->total_pages}}</td>
                                 <td>{{$book->published_at}}</td>

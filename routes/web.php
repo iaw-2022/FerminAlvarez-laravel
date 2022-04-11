@@ -26,6 +26,8 @@ Route::resource('bookshops', 'App\Http\Controllers\BookshopController');
 
 Route::get('/bookshop/{id}',[App\Http\Controllers\BookshopController::class, 'show']);
 
+Route::get('/book-prices/{id}',[App\Http\Controllers\BookController::class, 'showPrices']);
+
 
 
 Route::get('/dashboard', function () {
