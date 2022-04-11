@@ -32,6 +32,8 @@ Route::get('/book/{id}',[App\Http\Controllers\BookController::class, 'show']);
 
 Route::get('/suscriber/{email}',[App\Http\Controllers\SuscriberController::class, 'show']);
 
+Route::get('/author/{id}',[App\Http\Controllers\AuthorController::class, 'show']);
+
 
 
 Route::get('/dashboard', function () {

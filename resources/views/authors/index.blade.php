@@ -19,7 +19,11 @@
                     @foreach ($authors as $author)
                         <tr class="text-center">
                             <td>{{$author->id}}</td>
-                            <td class ="fw-bold mb-1">{{$author->name}}</td>
+                            <td>
+                                <a href="/author/{{$author->id}}" class ="fw-bold mb-1 text-decoration-none">
+                                    {{$author->name}}
+                                </a>
+                            </td> 
                         </tr>
                     @endforeach
                 </tbody>

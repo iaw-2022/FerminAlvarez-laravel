@@ -47,7 +47,8 @@ class AuthorController extends Controller
      */
     public function show($id)
     {
-        //
+        $author = Author::find($id);
+        return view('authors.show')->with('author',$author);
     }
 
     /**
