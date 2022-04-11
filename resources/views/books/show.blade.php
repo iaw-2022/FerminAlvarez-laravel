@@ -25,7 +25,11 @@
                 <tbody>
                     @foreach ($book->bookshops as $bookshop)
                         <tr class="text-center">
-                            <td class ="fw-bold mb-1">{{$bookshop->name}}</td>
+                            <td>
+                                <a href="/bookshop/{{$bookshop->id}}" class ="fw-bold mb-1 text-decoration-none">
+                                {{$bookshop->name}}
+                                </a>
+                            </td>
                             <td class="fw-bold" style="color:green">{{$bookshop->pivot->price}}</td>
                         </tr>
                     @endforeach

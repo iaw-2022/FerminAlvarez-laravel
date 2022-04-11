@@ -38,7 +38,11 @@
                                 class="img-thumbnail img-responsive book-img">
                             </td>
                             <td>{{$book->ISBN}}</td>
-                            <td class ="fw-bold mb-1">{{$book->name}}</td>
+                            <td>
+                                <a href="/book/{{$book->ISBN}}" class ="fw-bold mb-1 text-decoration-none">
+                                    {{$book->name}}
+                                </a>
+                            </td>
                             <td>{{$book->publisher}}</td>
                             <td>{{$book->published_at}}</td>
                             <td>{{$book->category}}</td>

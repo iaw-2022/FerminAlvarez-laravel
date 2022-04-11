@@ -38,7 +38,9 @@
                                 <td>{{$book->published_at}}</td>
                                 <td>
                                     @foreach ($book->authors as $author)
-                                        {{$author->name}}
+                                        <a href="/author/{{$author->id}}" class ="fw-bold mb-1 text-decoration-none">
+                                            {{$author->name}}
+                                        </a>
                                         <br>
                                     @endforeach
                                 </td>

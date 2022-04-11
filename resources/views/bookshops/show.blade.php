@@ -40,13 +40,19 @@
                                 class="img-thumbnail img-responsive book-img">
                             </td>
                             <td>{{$book->ISBN}}</td>
-                            <td class ="fw-bold mb-1">{{$book->name}}</td>
+                            <td>
+                                <a href="/book/{{$book->ISBN}}" class ="fw-bold mb-1 text-decoration-none">
+                                    {{$book->name}}
+                                </a>
+                            </td>
                             <td>{{$book->publisher}}</td>
                             <td class="fw-bold" style="color:green">{{$book->pivot->price}}</td>
                             <td>{{$book->published_at}}</td>
                             <td>
                                 @foreach ($book->authors as $author)
-                                    {{$author->name}}
+                                    <a href="/author/{{$author->id}}" class ="fw-bold mb-1 text-decoration-none">
+                                        {{$author->name}}
+                                    </a>
                                     <br>
                                 @endforeach
                             </td>
