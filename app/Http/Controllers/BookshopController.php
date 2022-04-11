@@ -47,7 +47,9 @@ class BookshopController extends Controller
      */
     public function show($id)
     {
-        //
+        $bookshop = Bookshop::find($id);
+        $books = $bookshop->books();
+        return view('bookshop.show',compact('bookshop'));
     }
 
     /**

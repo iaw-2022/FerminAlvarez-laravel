@@ -22,4 +22,8 @@ class Bookshop extends Model
         'latitude',
         'longitude'
     ];
+
+    public function books(){
+        return $this->belongsToMany(Book::class,'has','Bookshop','ISBN')->withPivot('price')->withTimestamps();
+    }
 }

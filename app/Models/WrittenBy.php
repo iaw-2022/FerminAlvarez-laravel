@@ -18,7 +18,7 @@ class WrittenBy extends Model
      */
     protected $fillable = [
         'Author',
-        'Book'
+        'ISBN'
     ];
 
 

@@ -11,13 +11,13 @@ class Book extends Model
 
     protected $table = 'books';
 
+    protected $primaryKey = 'ISBN';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-
-    protected $primaryKey = 'ISBN';
 
     protected $fillable = [
         'ISBN',
@@ -31,5 +31,9 @@ class Book extends Model
 
     public function authors(){
         return $this->belongsToMany(Author::class,'written_by','ISBN','Author');
+    }
+
+    public function bookshops(){
+        return $this->belongsToMany(Bookshop::class,'has','ISBN','Bookshop')->withPivot('price');
     }
 }

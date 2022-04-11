@@ -19,7 +19,11 @@
                     @foreach ($bookshops as $bookshop)
                         <tr class="text-center">
                             <td>{{$bookshop->id}}</td>
-                            <td class ="fw-bold mb-1">{{$bookshop->name}}</td>
+                            <td>
+                                <a href="/bookshop/{{$bookshop->id}}" class ="fw-bold mb-1 text-decoration-none">
+                                    {{$bookshop->name}}
+                                </a>
+                            </td>
                             <td>{{$bookshop->city}}</td>
                             <td>{{$bookshop->latitude}}</td>
                             <td>{{$bookshop->longitude}}</td>

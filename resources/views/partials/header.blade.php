@@ -8,7 +8,7 @@
 
             <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
             <li>
-                <a href="books" class="nav-link text-white text-center pb-0 pt-0">
+                <a href="/books" class="nav-link text-white text-center pb-0 pt-0">
                     <span class="material-icons-outlined ">
                         book
                     </span>
@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li>
-                <a href="authors" class="nav-link text-white text-center pb-0 pt-0">
+                <a href="/authors" class="nav-link text-white text-center pb-0 pt-0">
                     <span class="material-icons-outlined">
                         face
                     </span>
@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li>
-                <a href="bookshops" class="nav-link text-white text-center pb-0 pt-0">
+                <a href="/bookshops" class="nav-link text-white text-center pb-0 pt-0">
                     <span class="material-icons-outlined">
                         store
                     </span>

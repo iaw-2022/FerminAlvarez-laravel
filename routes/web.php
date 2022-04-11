@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,10 @@ Route::resource('books', 'App\Http\Controllers\BookController');
 Route::resource('authors', 'App\Http\Controllers\AuthorController');
 
 Route::resource('bookshops', 'App\Http\Controllers\BookshopController');
+
+Route::get('/bookshop/{id}',[App\Http\Controllers\BookshopController::class, 'show']);
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
