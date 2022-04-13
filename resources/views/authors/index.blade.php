@@ -28,11 +28,5 @@
         </div>
     </div>
 
-    @section('js')
-        <script>$(document).ready(function() {
-            $('#authors-table').DataTable({
-                responsive:true
-            });});
-        </script>
-    @endsection
+    @section('table_name', 'authors-table')
 @endsection

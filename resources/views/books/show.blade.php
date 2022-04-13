@@ -38,11 +38,5 @@
         </div>
     </div>
 
-    @section('js')
-        <script>$(document).ready(function() {
-            $('#bookshops-table').DataTable({
-                responsive:true
-            });});
-        </script>
-    @endsection
+    @section('table_name', 'bookshops-table')
 @endsection
