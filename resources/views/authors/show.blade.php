@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="aligns-items-center mt-3 col-lg-12">
-            <table class="table align-middle table-striped display nowrap" cellspacing="0" id="books-table" width=100%>
+            <table class="table align-middle table-striped display nowrap" cellspacing="0" id="authors-table" width=100%>
                 <thead class="bg-light text-center">
                     <tr>
                         <th>Imagen</th>
