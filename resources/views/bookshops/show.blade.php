@@ -46,8 +46,8 @@
                                 </a>
                             </td>
                             <td>{{$book->publisher}}</td>
-                            <td class="fw-bold" style="color:green">{{$book->pivot->price}}</td>
-                            <td>{{$book->published_at}}</td>
+                            <td class="fw-bold" style="color:green">@money($book->pivot->price)</td>
+                            <td>{{date('d-m-Y', strtotime($book->published_at))}}</td>
                             <td>
                                 @foreach ($book->authors as $author)
                                     <a href="/author/{{$author->id}}" class ="fw-bold mb-1 text-decoration-none">

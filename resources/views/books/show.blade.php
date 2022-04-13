@@ -30,7 +30,7 @@
                                 {{$bookshop->name}}
                                 </a>
                             </td>
-                            <td class="fw-bold" style="color:green">{{$bookshop->pivot->price}}</td>
+                            <td class="fw-bold" style="color:green">@money($bookshop->pivot->price)</td>
                         </tr>
                     @endforeach
                 </tbody>

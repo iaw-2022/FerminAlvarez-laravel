@@ -41,7 +41,7 @@
                                 </a>
                             </td>
                             <td>{{$book->publisher}}</td>
-                            <td>{{$book->published_at}}</td>
+                            <td>{{date('d-m-Y', strtotime($book->published_at))}}</td>
                             <td>{{$book->category}}</td>
                             <td>{{$book->total_pages}}</td>
                         </tr>
