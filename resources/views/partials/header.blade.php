@@ -25,19 +25,19 @@
             <div class="nav_list">
                 <a href="/books" class="nav_link">
                     <i class='bx bx-book nav_icon'></i>
-                    <span class="nav_name">Libros</span>
+                    <span class="text-light">Libros</span>
                 </a>
                 <a href="/authors" class="nav_link">
                     <i class='bx bx-user-circle nav_icon'></i>
-                    <span class="nav_name">Autores</span>
+                    <span class="text-light">Autores</span>
                 </a>
                 <a href="/bookshops" class="nav_link">
                     <i class='bx bx-store nav_icon'></i>
-                    <span class="nav_name">Librerías</span>
+                    <span class="text-light">Librerías</span>
                 </a>
                 <a href="/suscribers" class="nav_link">
                     <i class='bx bx-user-plus nav_icon'></i>
-                    <span class="nav_name">Suscriptores</span>
+                    <span class="text-light">Suscriptores</span>
                 </a>
 
             </div>
@@ -45,7 +45,7 @@
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
             <a href ="javascript:;" class="nav_link" onclick="document.getElementById('logout-form').submit();">
                 <i class='bx bx-log-out nav_icon'></i>
-                <span class="nav_name">Cerrar sesión</span>
+                <span class="text-light">Cerrar sesión</span>
             </a>
             @csrf
         </form>
