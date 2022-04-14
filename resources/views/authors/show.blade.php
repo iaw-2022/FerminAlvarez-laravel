@@ -51,5 +51,5 @@
         </div>
     </div>
 
-    @section('table_name', 'books-table')
+    @section('table_name', 'authors-table')
 @endsection
