@@ -11,14 +11,14 @@
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <!-- Datatables responsive -->
     <link href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css" rel="stylesheet">
-    <!-- Google Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="/css/styles.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
 
     <title>@yield('title')</title>
   </head>
-  <body>
+  <body id="body-pd">
 
     @include('partials.header')
 
@@ -26,7 +26,7 @@
         @yield('content')
     </div>
 
-
+    <!------------------ SCRIPTS ------------------>
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <!-- JQuery datatables -->
@@ -41,7 +41,7 @@
       $('#@yield('table_name')').DataTable({
           responsive:true
       });});
-  </script>
+    </script>
   </body>
 
 </html>

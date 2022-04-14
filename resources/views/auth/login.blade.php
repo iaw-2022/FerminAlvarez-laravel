@@ -2,7 +2,8 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/18-education-school/read-book.png" alt="Logo login"
+                style="width: 100px;">
             </a>
         </x-slot>
 

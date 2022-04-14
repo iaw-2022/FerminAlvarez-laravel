@@ -3,6 +3,7 @@
 @section('title', 'Autores')
 
 @section('content')
+    <h2 class="card-title">Autores</h2>
     <div class="row">
         <div class="aligns-items-center mt-3 col-lg-12">
             <table class="table align-middle table-striped display nowrap" cellspacing="0" id="authors-table" width=100%>
@@ -20,7 +21,7 @@
                                 <a href="/author/{{$author->id}}" class ="fw-bold mb-1 text-decoration-none">
                                     {{$author->name}}
                                 </a>
-                            </td> 
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

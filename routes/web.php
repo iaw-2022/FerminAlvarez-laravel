@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/login');
 
 Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['auth']);
 
@@ -33,11 +31,5 @@ Route::get('/book/{id}',[App\Http\Controllers\BookController::class, 'show'])->m
 Route::get('/suscriber/{email}',[App\Http\Controllers\SuscriberController::class, 'show'])->middleware(['auth']);
 
 Route::get('/author/{id}',[App\Http\Controllers\AuthorController::class, 'show'])->middleware(['auth']);
-
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

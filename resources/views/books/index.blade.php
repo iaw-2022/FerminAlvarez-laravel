@@ -3,7 +3,7 @@
 @section('title', 'Libros')
 
 @section('content')
-
+    <h2 class="card-title">Libros</h2>
     <div class="row">
         <div class="aligns-items-center mt-3 col-lg-12">
                 <table class="table align-middle table-striped display nowrap" cellspacing="0" id="books-table" width=100%>
