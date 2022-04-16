@@ -6,7 +6,9 @@
 <div class="card text-center ">
     <div class="card-body ">
         <h2 class="card-title">{{$suscriber->email}}</h2>
-        {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+        <button type="button" class="btn btn-outline-primary my-3">
+            <a href="/suscriber/{{$suscriber->id}}/edit">Editar</a>
+        </button>
       </div>
   </div>
     <div class="row">
