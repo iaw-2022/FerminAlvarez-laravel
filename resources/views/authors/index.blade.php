@@ -5,7 +5,7 @@
 @section('content')
     <h2 class="card-title">Autores</h2>
     <div class="row">
-        <div class="aligns-items-center mt-3 col-lg-12">
+        <div class="aligns-items-center mt-3 col-lg-12 shadow-lg p-3 mb-5 bg-body rounded">
             <table class="table align-middle table-striped display nowrap" cellspacing="0" id="authors-table" width=100%>
                 <thead class="bg-light text-center">
                     <tr>
