@@ -10,6 +10,7 @@ class Suscribed extends Model
     use HasFactory;
 
     protected $table = 'subscribed';
+    protected $primaryKey = "email";
 
     /**
      * The attributes that are mass assignable.

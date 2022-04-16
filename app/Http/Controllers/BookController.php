@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\WrittenBy;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -28,7 +29,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $authors = Author::all();
+        return view ('books.create') -> with('authors',$authors);
     }
 
     /**
@@ -39,7 +41,39 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ISBN' => 'required|integer',
+            'name' => 'required|max:255',
+            'publisher' => 'required|max:255',
+            'total_pages' => 'integer',
+            'published_at' => 'nullable|date',
+            'category' => 'max:255',
+            'image' => ''
+        ]);
+
+        $book = new Book();
+        $request->get('ISBN');
+        $book->ISBN = $request->get('ISBN');
+        $book->name = $request->get('name');
+        $book->publisher = $request->get('publisher');
+        $book->total_pages = $request->get('total_pages');
+        $book->published_at = $request->get('published_at');
+        $book->category = $request->get('category');
+        $book->image_link = $request->get('image_link');
+
+        $book->save();
+
+        $authors = $request->input('author');
+
+        foreach((array) $authors as $author){
+            $written_by = new WrittenBy();
+            $written_by->Author = $author;
+            $written_by->ISBN = $book->ISBN;
+            $written_by->save();
+        }
+
+
+        return redirect("/books");
     }
 
     /**

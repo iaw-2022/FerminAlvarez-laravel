@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Librerías')
+@section('title', 'Suscriptor')
 
 @section('content')
 <div class="card text-center ">

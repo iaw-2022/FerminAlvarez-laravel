@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Suscribed;
 use Illuminate\Http\Request;
 use App\Models\Suscriber;
 
@@ -25,7 +27,8 @@ class SuscriberController extends Controller
      */
     public function create()
     {
-        //
+        $books = Book::all();
+        return view ('suscribers.create') -> with('books',$books);
     }
 
     /**
@@ -36,7 +39,24 @@ class SuscriberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email' => 'required|max:255'
+        ]);
+
+        $suscriber = new Suscriber();
+        $suscriber->email = $request->get('email');
+        $suscriber->save();
+
+        $books = $request->input('books');
+
+        foreach((array) $books as $book){
+            $suscribed = new Suscribed();
+            $suscribed->email = $suscriber->email;
+            $suscribed->ISBN = $book;
+            $suscribed->save();
+        }
+
+        return redirect("/suscribers");
     }
 
     /**

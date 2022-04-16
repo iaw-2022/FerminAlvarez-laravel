@@ -25,7 +25,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view ('authors.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255'
+        ]);
+        $author = new Author();
+        $author->name = $request->get('name');
+        $author->save();
+
+        return redirect("/authors");
     }
 
     /**

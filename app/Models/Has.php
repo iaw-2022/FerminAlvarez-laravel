@@ -10,6 +10,7 @@ class Has extends Model
     use HasFactory;
 
     protected $table = 'has';
+    protected $primaryKey = "ISBN";
 
     /**
      * The attributes that are mass assignable.

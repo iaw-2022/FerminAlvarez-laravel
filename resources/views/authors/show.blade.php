@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Autores')
+@section('title', 'Autor')
 
 @section('content')
 
@@ -50,6 +50,7 @@
             </table>
         </div>
     </div>
+
 
     @section('table_name', 'authors-table')
 @endsection
