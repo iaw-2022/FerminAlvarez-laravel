@@ -19,8 +19,8 @@ class Bookshop extends Model
     protected $fillable = [
         'name',
         'city',
-        'latitude',
-        'longitude'
+        'street',
+        'number'
     ];
 
     public function books(){

@@ -42,8 +42,8 @@ class BookshopController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'city' => 'nullable|max:255',
-            'latitude' => 'nullable|numeric',
-            'latitude' => 'nullable|numeric',
+            'street' => 'nullable|max:255',
+            'number' => 'nullable|max:255',
             'prices.*' => 'gt:0'
         ]);
 
@@ -51,8 +51,8 @@ class BookshopController extends Controller
         $bookshop = new Bookshop();
         $bookshop->name = $request->get('name');
         $bookshop->city = $request->get('city');
-        $bookshop->latitude = $request->get('latitude');
-        $bookshop->longitude = $request->get('longitude');
+        $bookshop->street = $request->get('street');
+        $bookshop->number = $request->get('number');
 
         $bookshop->save();
 
@@ -109,18 +109,17 @@ class BookshopController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'city' => 'nullable|max:255',
-            'latitude' => 'nullable|numeric',
-            'latitude' => 'nullable|numeric',
+            'street' => 'nullable|max:255',
+            'number' => 'nullable|max:255',
             'prices.*' => 'gt:0'
         ]);
 
 
-        $bookshop = Bookshop::find($request->id);
+        $bookshop = Bookshop::find($id);
         $bookshop->name = $request->get('name');
         $bookshop->city = $request->get('city');
-        $bookshop->latitude = $request->get('latitude');
-        $bookshop->longitude = $request->get('longitude');
-
+        $bookshop->street = $request->get('street');
+        $bookshop->number = $request->get('number');
         $bookshop->save();
 
         $bookshop->books()->detach();

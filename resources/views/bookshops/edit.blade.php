@@ -31,12 +31,11 @@
                                 value="{{ $bookshop->city }}">
                         </div>
                         <div class="col-md-6">
-                            <input type="number" step="0.001" class="form-control" placeholder="Longitud" name="longitude"
-                                value="{{ $bookshop->longitude }}">
+                            <input type="text" step="1" class="form-control" placeholder="Calle"
+                            name="street" value="{{ $bookshop->street }}">
                         </div>
                         <div class="col-md-6">
-                            <input type="number" step="0.001" class="form-control" placeholder="Latitud" name="latitude"
-                                value="{{ $bookshop->latitude }}">
+                            <input type="number" step="1" class="form-control" placeholder="Número" name="number"  value="{{ $bookshop->number }}">
                         </div>
                         <table class="table align-middle table-striped display nowrap" cellspacing="0" id="books-table"
                             width=100%>

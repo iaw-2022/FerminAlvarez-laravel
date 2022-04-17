@@ -19,20 +19,20 @@ class BookshopSeeder extends Seeder
             [
                 'name' => 'Librería Don Quijote',
                 'city' => 'Bahía Blanca',
-                'latitude' => '-38.722433003095695',
-                'longitude' => '-62.26480468466647',
+                'street' => 'Fitz Roy',
+                'number' => '92',
             ],
             [
                 'name' => 'Cúspide',
                 'city' => 'CABA',
-                'latitude' => '-34.48894057978279',
-                'longitude' => '-58.499096569738754',
+                'street' => 'Avenida Santa Fe',
+                'number' => '3492',
             ],
             [
                 'name' => 'Cúspide',
                 'city' => 'CABA',
-                'latitude' => '-34.586590081413064',
-                'longitude' => '-58.414013719921385',
+                'street' => 'Avenida Rivadavia',
+                'number' => '5045',
             ]
         ];
         DB::table('bookshops')->insert($data);

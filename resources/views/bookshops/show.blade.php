@@ -8,8 +8,8 @@
             <h2 class="card-title">{{ $bookshop->name }}</h2>
             <h3 class="card-subtitle">Código: {{ $bookshop->id }}</h3>
             <p class="card-text">{{ $bookshop->city }} <br>
-                Longitud: {{ $bookshop->latitude }} <br>
-                Latitud: {{ $bookshop->longitude }}</p>
+                Calle: {{ $bookshop->street }} <br>
+                Número: {{ $bookshop->number }}</p>
             <a href="/bookshops/{{ $bookshop->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
             <form action="/bookshops/{{ $bookshop->id }}" method="POST" class="d-inline">
                 @csrf

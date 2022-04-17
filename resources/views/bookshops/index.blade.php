@@ -17,8 +17,7 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Ciudad</th>
-                        <th>Latitud</th>
-                        <th>Longitud</th>
+                        <th>Dirección</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,8 +30,8 @@
                                 </a>
                             </td>
                             <td>{{ $bookshop->city }}</td>
-                            <td>{{ $bookshop->latitude }}</td>
-                            <td>{{ $bookshop->longitude }}</td>
+                            <td>{{ $bookshop->street ." ". $bookshop->number }}</td>
+                            <td></td>
                         </tr>
                     @endforeach
                 </tbody>
