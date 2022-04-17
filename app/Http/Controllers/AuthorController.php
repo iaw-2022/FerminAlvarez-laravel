@@ -83,7 +83,7 @@ class AuthorController extends Controller
             'name' => 'required|max:255'
         ]);
 
-        $author = Author::find($request->id);
+        $author = Author::find($id);
         $author->name = $request->get('name');
         $author->save();
 

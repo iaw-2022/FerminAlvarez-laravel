@@ -97,7 +97,7 @@ class SuscriberController extends Controller
             'email' => 'required|max:255'
         ]);
 
-        $suscriber = Suscriber::find($request->id);
+        $suscriber = Suscriber::find($id);
         $suscriber->email = $request->get('email');
         $suscriber->save();
 
