@@ -92,7 +92,9 @@ class BookshopController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bookshop = Bookshop::find($id);
+        $books = Book::All();
+        return view('bookshops.edit')->with('bookshop',$bookshop)->with('books',$books);
     }
 
     /**
@@ -104,7 +106,38 @@ class BookshopController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'city' => 'nullable|max:255',
+            'latitude' => 'nullable|numeric',
+            'latitude' => 'nullable|numeric',
+            'prices.*' => 'gt:0'
+        ]);
+
+
+        $bookshop = Bookshop::find($request->id);
+        $bookshop->name = $request->get('name');
+        $bookshop->city = $request->get('city');
+        $bookshop->latitude = $request->get('latitude');
+        $bookshop->longitude = $request->get('longitude');
+
+        $bookshop->save();
+
+        $bookshop->books()->detach();
+
+        $books = $request->input('books');
+        $prices = $request->input('prices');
+        $index = 0;
+
+        foreach((array)$books as $book){
+            $has = new Has();
+            $has->price = $prices[$index++];
+            $has->ISBN = $book;
+            $has->Bookshop = $bookshop->id;
+            $has->save();
+        }
+
+        return redirect("/bookshop/".$bookshop->id);
     }
 
     /**

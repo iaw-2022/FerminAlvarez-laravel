@@ -23,6 +23,9 @@ Route::put('/book/{id}',[App\Http\Controllers\BookController::class, 'update'])-
 
 Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth']);
 Route::get('/bookshop/{id}',[App\Http\Controllers\BookshopController::class, 'show'])->middleware(['auth']);
+Route::get('/bookshop/{id}/edit',[App\Http\Controllers\BookshopController::class, 'edit'])->middleware(['auth']);
+Route::put('/bookshop/{id}',[App\Http\Controllers\BookshopController::class, 'update'])->middleware(['auth']);
+
 
 Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middleware(['auth']);
 Route::get('/suscriber/{id}',[App\Http\Controllers\SuscriberController::class, 'show'])->middleware(['auth']);
