@@ -68,7 +68,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a href="/author/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none" target="_blank">
+                                                        <a href="/authors/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none" target="_blank">
                                                             {{ $author->name }}
                                                         </a>
                                                     </td>

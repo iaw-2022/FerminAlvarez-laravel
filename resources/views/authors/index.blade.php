@@ -23,7 +23,7 @@
                         <tr class="text-center">
                             <td>{{ $author->id }}</td>
                             <td>
-                                <a href="/author/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none">
+                                <a href="/authors/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none">
                                     {{ $author->name }}
                                 </a>
                             </td>

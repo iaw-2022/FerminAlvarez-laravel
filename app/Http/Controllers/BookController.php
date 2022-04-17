@@ -140,7 +140,7 @@ class BookController extends Controller
             $written_by->save();
         }
 
-        return redirect("/book/".$book->ISBN);
+        return redirect("/books/".$book->ISBN);
     }
 
     /**

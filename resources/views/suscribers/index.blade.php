@@ -21,7 +21,7 @@
                     @foreach ($suscribers as $suscriber)
                         <tr class="text-center">
                             <td>
-                                <a href="/suscriber/{{ $suscriber->id }}" class="fw-bold mb-1 text-decoration-none">
+                                <a href="/suscribers/{{ $suscriber->id }}" class="fw-bold mb-1 text-decoration-none">
                                     {{ $suscriber->email }}
                                 </a>
                             </td>

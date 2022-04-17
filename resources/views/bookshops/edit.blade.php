@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Editar librería</h3>
                 </div>
-                <form action="/bookshop/{{ $bookshop->id }}" method="POST">
+                <form action="/bookshops/{{ $bookshop->id }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
@@ -83,7 +83,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="/book/{{$book->ISBN}}" class="fw-bold mb-1 text-decoration-none" target="_blank">
+                                            <a href="/books/{{$book->ISBN}}" class="fw-bold mb-1 text-decoration-none" target="_blank">
                                                 {{ $book->name }}
                                             </a>
                                         </td>
@@ -97,7 +97,7 @@
                         <div class="col-12 mt-5">
                             <button type="submit" class="btn btn-primary float-end">Guardar librería</button>
                             <button type="button" class="btn btn-outline-secondary float-end me-2">
-                                <a href="/bookshops">Cancelar</a>
+                                <a href="/bookshops/{{$bookshop->id}}">Cancelar</a>
                             </button>
                         </div>
                     </div>

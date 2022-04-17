@@ -26,7 +26,7 @@
                         <tr class="text-center">
                             <td>{{ $bookshop->id }}</td>
                             <td>
-                                <a href="/bookshop/{{ $bookshop->id }}" class="fw-bold mb-1 text-decoration-none">
+                                <a href="/bookshops/{{ $bookshop->id }}" class="fw-bold mb-1 text-decoration-none">
                                     {{ $bookshop->name }}
                                 </a>
                             </td>

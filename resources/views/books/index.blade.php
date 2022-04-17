@@ -33,7 +33,7 @@
                             </td>
                             <td>{{ $book->ISBN }}</td>
                             <td>
-                                <a href="/book/{{ $book->ISBN }}" class="fw-bold mb-1 text-decoration-none">
+                                <a href="/books/{{ $book->ISBN }}" class="fw-bold mb-1 text-decoration-none">
                                     {{ $book->name }}
                                 </a>
                             </td>
@@ -42,7 +42,7 @@
                             <td>{{ date('d-m-Y', strtotime($book->published_at)) }} </td>
                             <td>
                                 @foreach ($book->authors as $author)
-                                    <a href="/author/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none">
+                                    <a href="/authors/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none">
                                         {{ $author->name }}
                                     </a>
                                     <br>

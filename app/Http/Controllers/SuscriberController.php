@@ -112,7 +112,7 @@ class SuscriberController extends Controller
         }
 
 
-        return redirect("/suscriber/".$suscriber->id);
+        return redirect("/suscribers/".$suscriber->id);
     }
 
     /**

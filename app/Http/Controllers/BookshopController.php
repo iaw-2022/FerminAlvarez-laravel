@@ -137,7 +137,7 @@ class BookshopController extends Controller
             $has->save();
         }
 
-        return redirect("/bookshop/".$bookshop->id);
+        return redirect("/bookshops/".$bookshop->id);
     }
 
     /**

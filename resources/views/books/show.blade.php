@@ -14,8 +14,8 @@
                     <li class="list-group-item">{{$author->name}}</li>
                 @endforeach
             </ul>
-            <a href="/book/{{ $book->ISBN }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-            <form action="/book/{{ $book->ISBN }}" method="POST" class="d-inline">
+            <a href="/books/{{ $book->ISBN }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+            <form action="/books/{{ $book->ISBN }}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
@@ -35,7 +35,7 @@
                     @foreach ($book->bookshops as $bookshop)
                         <tr class="text-center">
                             <td>
-                                <a href="/bookshop/{{ $bookshop->id }}" class="fw-bold mb-1 text-decoration-none">
+                                <a href="/bookshops/{{ $bookshop->id }}" class="fw-bold mb-1 text-decoration-none">
                                     {{ $bookshop->name }}
                                 </a>
                             </td>

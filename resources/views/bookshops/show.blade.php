@@ -10,8 +10,8 @@
             <p class="card-text">{{ $bookshop->city }} <br>
                 Longitud: {{ $bookshop->latitude }} <br>
                 Latitud: {{ $bookshop->longitude }}</p>
-            <a href="/bookshop/{{ $bookshop->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-            <form action="/bookshop/{{ $bookshop->id }}" method="POST" class="d-inline">
+            <a href="/bookshops/{{ $bookshop->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+            <form action="/bookshops/{{ $bookshop->id }}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
@@ -43,7 +43,7 @@
                             </td>
                             <td>{{ $book->ISBN }}</td>
                             <td>
-                                <a href="/book/{{ $book->ISBN }}" class="fw-bold mb-1 text-decoration-none">
+                                <a href="/books/{{ $book->ISBN }}" class="fw-bold mb-1 text-decoration-none">
                                     {{ $book->name }}
                                 </a>
                             </td>
@@ -52,7 +52,7 @@
                             <td>{{ date('d-m-Y', strtotime($book->published_at)) }}</td>
                             <td>
                                 @foreach ($book->authors as $author)
-                                    <a href="/author/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none">
+                                    <a href="/authors/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none">
                                         {{ $author->name }}
                                     </a>
                                     <br>

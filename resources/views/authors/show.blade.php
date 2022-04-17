@@ -7,8 +7,8 @@
         <div class="card-body ">
             <h2 class="card-title">{{ $author->name }}</h2>
             <h3 class="card-subtitle">Código: {{ $author->id }}</h3>
-            <a href="/author/{{ $author->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-            <form action="/author/{{ $author->id }}" method="POST" class="d-inline">
+            <a href="/authors/{{ $author->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+            <form action="/authors/{{ $author->id }}" method="POST" class="d-inline">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
@@ -38,7 +38,7 @@
                             </td>
                             <td>{{ $book->ISBN }}</td>
                             <td>
-                                <a href="/book/{{ $book->ISBN }}" class="fw-bold mb-1 text-decoration-none">
+                                <a href="/books/{{ $book->ISBN }}" class="fw-bold mb-1 text-decoration-none">
                                     {{ $book->name }}
                                 </a>
                             </td>
