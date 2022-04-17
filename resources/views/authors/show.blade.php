@@ -8,6 +8,11 @@
             <h2 class="card-title">{{ $author->name }}</h2>
             <h3 class="card-subtitle">Código: {{ $author->id }}</h3>
             <a href="/author/{{ $author->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+            <form action="/author/{{ $author->id }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+            </form>
         </div>
     </div>
     <div class="row">

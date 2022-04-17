@@ -11,6 +11,11 @@
                 Longitud: {{ $bookshop->latitude }} <br>
                 Latitud: {{ $bookshop->longitude }}</p>
             <a href="/bookshop/{{ $bookshop->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+            <form action="/bookshop/{{ $bookshop->id }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+            </form>
         </div>
     </div>
     <div class="row">

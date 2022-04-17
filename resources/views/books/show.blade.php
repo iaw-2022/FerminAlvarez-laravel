@@ -10,6 +10,11 @@
             <h2 class="card-title">{{ $book->name }}</h2>
             <h3 class="card-subtitle">{{ $book->ISBN }}</h3>
             <a href="/book/{{ $book->ISBN }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+            <form action="/book/{{ $book->ISBN }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+            </form>
         </div>
     </div>
     <div class="row">

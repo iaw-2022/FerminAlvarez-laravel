@@ -123,6 +123,8 @@ class SuscriberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $suscriber = Suscriber::find($id);
+        $suscriber->delete();
+        return redirect("/suscribers");
     }
 }

@@ -148,6 +148,8 @@ class BookshopController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bookshop = Bookshop::find($id);
+        $bookshop->delete();
+        return redirect("/bookshops");
     }
 }

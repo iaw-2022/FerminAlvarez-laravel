@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('written_by', function (Blueprint $table) {
 
-            $table->foreignId(Author::class);
+            $table->foreignId(Author::class)->onDelete('cascade');
             $table->string('ISBN');
-            $table->foreign('ISBN')->references('ISBN')->on('books');
+            $table->foreign('ISBN')->references('ISBN')->on('books')->onDelete('cascade');
             $table->timestamps();
         });
     }

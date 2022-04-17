@@ -7,6 +7,11 @@
         <div class="card-body ">
             <h2 class="card-title">{{ $suscriber->email }}</h2>
             <a href="/suscriber/{{ $suscriber->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+            <form action="/suscriber/{{ $suscriber->id }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+            </form>
         </div>
     </div>
     <div class="row">

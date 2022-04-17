@@ -20,21 +20,25 @@ Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['au
 Route::get('/book/{id}',[App\Http\Controllers\BookController::class, 'show'])->middleware(['auth']);
 Route::get('/book/{id}/edit',[App\Http\Controllers\BookController::class, 'edit'])->middleware(['auth']);
 Route::put('/book/{id}',[App\Http\Controllers\BookController::class, 'update'])->middleware(['auth']);
+Route::delete('/book/{ISBN}',[App\Http\Controllers\BookController::class, 'destroy'])->middleware(['auth']);
 
 Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth']);
 Route::get('/bookshop/{id}',[App\Http\Controllers\BookshopController::class, 'show'])->middleware(['auth']);
 Route::get('/bookshop/{id}/edit',[App\Http\Controllers\BookshopController::class, 'edit'])->middleware(['auth']);
 Route::put('/bookshop/{id}',[App\Http\Controllers\BookshopController::class, 'update'])->middleware(['auth']);
+Route::delete('/bookshop/{ISBN}',[App\Http\Controllers\BookshopController::class, 'destroy'])->middleware(['auth']);
 
 
 Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middleware(['auth']);
 Route::get('/suscriber/{id}',[App\Http\Controllers\SuscriberController::class, 'show'])->middleware(['auth']);
 Route::get('/suscriber/{id}/edit',[App\Http\Controllers\SuscriberController::class, 'edit'])->middleware(['auth']);
 Route::put('/suscriber/{id}',[App\Http\Controllers\SuscriberController::class, 'update'])->middleware(['auth']);
+Route::delete('/suscriber/{ISBN}',[App\Http\Controllers\SuscriberController::class, 'destroy'])->middleware(['auth']);
 
 Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth']);
 Route::get('/author/{id}',[App\Http\Controllers\AuthorController::class, 'show'])->middleware(['auth']);
 Route::get('/author/{id}/edit',[App\Http\Controllers\AuthorController::class, 'edit'])->middleware(['auth']);
 Route::put('/author/{id}',[App\Http\Controllers\AuthorController::class, 'update'])->middleware(['auth']);
+Route::delete('/author/{ISBN}',[App\Http\Controllers\AuthorController::class, 'destroy'])->middleware(['auth']);
 
 require __DIR__ . '/auth.php';

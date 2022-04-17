@@ -146,11 +146,13 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $ISBN
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($ISBN)
     {
-        //
+        $book = Book::find($ISBN);
+        $book->delete();
+        return redirect("/books");
     }
 }
