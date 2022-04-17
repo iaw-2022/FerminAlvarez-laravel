@@ -8,9 +8,7 @@
     <div class="card-body ">
         <h2 class="card-title">{{$author->name}}</h2>
         <h3 class="card-subtitle">Código: {{$author->id}}</h3>
-        <button type="button" class="btn btn-outline-primary my-3">
-            <a href="/author/{{$author->id}}/edit">Editar</a>
-        </button>
+        <a href="/author/{{$author->id}}/edit" class="btn btn-outline-primary my-3">Editar</a>
         </div>
     </div>
 
