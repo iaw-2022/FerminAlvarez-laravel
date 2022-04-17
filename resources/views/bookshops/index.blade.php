@@ -24,21 +24,20 @@
                 <tbody>
                     @foreach ($bookshops as $bookshop)
                         <tr class="text-center">
-                            <td>{{$bookshop->id}}</td>
+                            <td>{{ $bookshop->id }}</td>
                             <td>
-                                <a href="/bookshop/{{$bookshop->id}}" class ="fw-bold mb-1 text-decoration-none">
-                                    {{$bookshop->name}}
+                                <a href="/bookshop/{{ $bookshop->id }}" class="fw-bold mb-1 text-decoration-none">
+                                    {{ $bookshop->name }}
                                 </a>
                             </td>
-                            <td>{{$bookshop->city}}</td>
-                            <td>{{$bookshop->latitude}}</td>
-                            <td>{{$bookshop->longitude}}</td>
+                            <td>{{ $bookshop->city }}</td>
+                            <td>{{ $bookshop->latitude }}</td>
+                            <td>{{ $bookshop->longitude }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
-    @section('table_name', 'bookshops-table')
+@section('table_name', 'bookshops-table')
 @endsection

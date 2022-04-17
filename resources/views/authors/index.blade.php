@@ -21,10 +21,10 @@
                 <tbody>
                     @foreach ($authors as $author)
                         <tr class="text-center">
-                            <td>{{$author->id}}</td>
+                            <td>{{ $author->id }}</td>
                             <td>
-                                <a href="/author/{{$author->id}}" class ="fw-bold mb-1 text-decoration-none">
-                                    {{$author->name}}
+                                <a href="/author/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none">
+                                    {{ $author->name }}
                                 </a>
                             </td>
                         </tr>
@@ -33,6 +33,5 @@
             </table>
         </div>
     </div>
-
-    @section('table_name', 'authors-table')
+@section('table_name', 'authors-table')
 @endsection

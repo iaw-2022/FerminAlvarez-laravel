@@ -1,18 +1,17 @@
 <header class="header" id="header">
     <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
     <div class="nav-item dropdown">
-            <a class="dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                {{ Auth::user()->name }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                    <a class="dropdown-item" href="javascript:;"
-                        onclick="document.getElementById('logout-form').submit();">
-                        {{ __('Cerrar sesión') }}
-                    </a>
-                </li>
-            </ul>
+        <a class="dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{ Auth::user()->name }}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+                <a class="dropdown-item" href="javascript:;" onclick="document.getElementById('logout-form').submit();">
+                    {{ __('Cerrar sesión') }}
+                </a>
+            </li>
+        </ul>
     </div>
 </header>
 <div class="l-navbar" id="nav-bar">
@@ -39,11 +38,10 @@
                     <i class='bx bx-user-plus nav_icon'></i>
                     <span class="text-light">Suscriptores</span>
                 </a>
-
             </div>
         </div>
         <form id="logout-form" action="{{ route('logout') }}" method="POST">
-            <a href ="javascript:;" class="nav_link" onclick="document.getElementById('logout-form').submit();">
+            <a href="javascript:;" class="nav_link" onclick="document.getElementById('logout-form').submit();">
                 <i class='bx bx-log-out nav_icon'></i>
                 <span class="text-light">Cerrar sesión</span>
             </a>

@@ -3,9 +3,7 @@
 @section('title', 'Nueva Librería')
 
 @section('content')
-
     <div class="container mt-5">
-
         <div class="row">
             <div class="col-md-16 border p-4 shadow bg-light">
                 @if ($errors->any())
@@ -20,7 +18,7 @@
                 <div class="col-12">
                     <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Editar librería</h3>
                 </div>
-                <form action="/bookshop/{{$bookshop->id}}" method="POST">
+                <form action="/bookshop/{{ $bookshop->id }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
@@ -63,9 +61,9 @@
                                                 @if ($bookshop->books->contains($book))
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1"
                                                         name="books[]" value="{{ $book->ISBN }}" onclick="var input = document.getElementById('input{{ $book->ISBN }}');
-                                                    if(this.checked){
-                                                        input.disabled = false; input.focus();}
-                                                    else{input.disabled=true;}" checked>
+                                                        if(this.checked){
+                                                            input.disabled = false; input.focus();}
+                                                        else{input.disabled=true;}" checked>
 
                                                     <input type="number" step="0.1" class="form-control"
                                                         placeholder="Indique su precio aquí" name="prices[]"
@@ -74,9 +72,9 @@
                                                 @else
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1"
                                                         name="books[]" value="{{ $book->ISBN }}" onclick="var input = document.getElementById('input{{ $book->ISBN }}');
-                                                    if(this.checked){
-                                                        input.disabled = false; input.focus();}
-                                                    else{input.disabled=true;}">
+                                                        if(this.checked){
+                                                            input.disabled = false; input.focus();}
+                                                        else{input.disabled=true;}">
 
                                                     <input type="number" step="0.1" class="form-control"
                                                         placeholder="Indique su precio aquí" name="prices[]"
@@ -105,6 +103,5 @@
             </div>
         </div>
     </div>
-
 @section('table_name', 'books-table')
 @endsection

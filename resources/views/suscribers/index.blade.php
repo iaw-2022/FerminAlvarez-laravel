@@ -21,8 +21,8 @@
                     @foreach ($suscribers as $suscriber)
                         <tr class="text-center">
                             <td>
-                                <a href="/suscriber/{{$suscriber->id}}" class ="fw-bold mb-1 text-decoration-none">
-                                    {{$suscriber->email}}
+                                <a href="/suscriber/{{ $suscriber->id }}" class="fw-bold mb-1 text-decoration-none">
+                                    {{ $suscriber->email }}
                                 </a>
                             </td>
                         </tr>
@@ -31,6 +31,5 @@
             </table>
         </div>
     </div>
-
-    @section('table_name', 'suscribers-table')
+@section('table_name', 'suscribers-table')
 @endsection

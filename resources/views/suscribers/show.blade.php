@@ -3,12 +3,12 @@
 @section('title', 'Suscriptor')
 
 @section('content')
-<div class="card text-center ">
-    <div class="card-body ">
-        <h2 class="card-title">{{$suscriber->email}}</h2>
-        <a href="/suscriber/{{$suscriber->id}}/edit" class="btn btn-outline-primary my-3">Editar</a>
-      </div>
-  </div>
+    <div class="card text-center ">
+        <div class="card-body ">
+            <h2 class="card-title">{{ $suscriber->email }}</h2>
+            <a href="/suscriber/{{ $suscriber->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+        </div>
+    </div>
     <div class="row">
         <div class="aligns-items-center mt-3 col-lg-12">
             <table class="table align-middle table-striped display nowrap" cellspacing="0" id="books-table" width=100%>
@@ -23,14 +23,13 @@
                     @foreach ($suscriber->books as $book)
                         <tr class="text-center">
                             <td>
-                                <img src="{{$book->image_link}}"
-                                alt="imagen del libro {{$book->name}}"
-                                class="img-thumbnail img-responsive book-img">
+                                <img src="{{ $book->image_link }}" alt="imagen del libro {{ $book->name }}"
+                                    class="img-thumbnail img-responsive book-img">
                             </td>
-                            <td>{{$book->ISBN}}</td>
+                            <td>{{ $book->ISBN }}</td>
                             <td>
-                                <a href="/book/{{$book->ISBN}}" class ="fw-bold mb-1 text-decoration-none">
-                                    {{$book->name}}
+                                <a href="/book/{{ $book->ISBN }}" class="fw-bold mb-1 text-decoration-none">
+                                    {{ $book->name }}
                                 </a>
                             </td>
                         </tr>
@@ -39,6 +38,5 @@
             </table>
         </div>
     </div>
-
-    @section('table_name', 'books-table')
+@section('table_name', 'books-table')
 @endsection
