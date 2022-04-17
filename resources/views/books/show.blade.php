@@ -10,7 +10,7 @@
             class="img-thumbnail img-responsive book-img">
             <h2 class="card-title">{{$book->name}}</h2>
             <h3 class="card-subtitle">{{$book->ISBN}}</h3>
-            {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+            <a href="/book/{{$book->ISBN}}/edit" class="btn btn-outline-primary my-3">Editar</a>
         </div>
     </div>
     <div class="row">

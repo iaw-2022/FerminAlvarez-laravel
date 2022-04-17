@@ -11,7 +11,7 @@
         <p class="card-text">{{$bookshop->city}} <br>
             Longitud: {{$bookshop->latitude}} <br>
             Latitud:  {{$bookshop->longitude}}</p>
-        {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+        <a href="/bookshop/{{$suscriber->id}}/edit" class="btn btn-outline-primary my-3">Editar</a>
       </div>
   </div>
 

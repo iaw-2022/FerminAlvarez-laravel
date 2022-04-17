@@ -18,6 +18,8 @@ Route::redirect('/', '/login');
 
 Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['auth']);
 Route::get('/book/{id}',[App\Http\Controllers\BookController::class, 'show'])->middleware(['auth']);
+Route::get('/book/{id}/edit',[App\Http\Controllers\BookController::class, 'edit'])->middleware(['auth']);
+Route::put('/book/{id}',[App\Http\Controllers\BookController::class, 'update'])->middleware(['auth']);
 
 Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth']);
 Route::get('/bookshop/{id}',[App\Http\Controllers\BookshopController::class, 'show'])->middleware(['auth']);

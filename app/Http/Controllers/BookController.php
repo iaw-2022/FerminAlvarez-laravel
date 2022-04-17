@@ -52,7 +52,6 @@ class BookController extends Controller
         ]);
 
         $book = new Book();
-        $request->get('ISBN');
         $book->ISBN = $request->get('ISBN');
         $book->name = $request->get('name');
         $book->publisher = $request->get('publisher');
@@ -96,7 +95,9 @@ class BookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::find($id);
+        $authors = Author::All();
+        return view('books.edit')->with('book',$book)->with('authors',$authors);
     }
 
     /**
@@ -108,7 +109,38 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'ISBN' => 'required|integer',
+            'name' => 'required|max:255',
+            'publisher' => 'required|max:255',
+            'total_pages' => 'integer',
+            'published_at' => 'nullable|date',
+            'category' => 'max:255',
+            'image' => ''
+        ]);
+
+        $book = Book::find($request->ISBN);
+        $request->get('ISBN');
+        $book->ISBN = $request->get('ISBN');
+        $book->name = $request->get('name');
+        $book->publisher = $request->get('publisher');
+        $book->total_pages = $request->get('total_pages');
+        $book->published_at = $request->get('published_at');
+        $book->category = $request->get('category');
+        $book->image_link = $request->get('image_link');
+        $book->save();
+
+        $book->authors()->detach();
+
+        $authors = $request->input('authors');
+        foreach((array) $authors as $author){
+            $written_by = new WrittenBy();
+            $written_by->Author = $author;
+            $written_by->ISBN = $book->ISBN;
+            $written_by->save();
+        }
+
+        return redirect("/book/".$book->ISBN);
     }
 
     /**
