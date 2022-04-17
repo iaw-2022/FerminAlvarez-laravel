@@ -5,10 +5,15 @@
 @section('content')
     <div class="card text-center ">
         <div class="card-body ">
-            <img src="{{ $book->image_link }}" alt="imagen del libro {{ $book->name }}"
-                class="img-thumbnail img-responsive book-img">
-            <h2 class="card-title">{{ $book->name }}</h2>
-            <h3 class="card-subtitle">{{ $book->ISBN }}</h3>
+            <img src="{{$book->image_link}}" alt="imagen del libro {{$book->name}}"
+            class="img-thumbnail img-responsive book-img">
+            <h2 class="card-title">{{$book->name}}</h2>
+            <h3 class="card-subtitle">{{$book->ISBN}}</h3>
+            <ul class="list-group list-group-flush">
+                @foreach ($book->authors as $author)
+                    <li class="list-group-item">{{$author->name}}</li>
+                @endforeach
+            </ul>
             <a href="/book/{{ $book->ISBN }}/edit" class="btn btn-outline-primary my-3">Editar</a>
             <form action="/book/{{ $book->ISBN }}" method="POST" class="d-inline">
                 @csrf
