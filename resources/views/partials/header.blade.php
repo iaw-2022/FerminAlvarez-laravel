@@ -52,7 +52,6 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function(event) {
-
         const showNavbar = (toggleId, navId, bodyId, headerId) => {
             const toggle = document.getElementById(toggleId),
                 nav = document.getElementById(navId),
@@ -61,11 +60,12 @@
 
             // Validate that all variables exist
             if (toggle && nav && bodypd && headerpd) {
-
-                nav.classList.toggle('show')
-                toggle.classList.toggle('bx-x')
-                bodypd.classList.toggle('body-pd')
-                headerpd.classList.toggle('body-pd')
+                if (getCookie("open") == "true"){
+                    nav.classList.toggle('show')
+                    toggle.classList.toggle('bx-x')
+                    bodypd.classList.toggle('body-pd')
+                    headerpd.classList.toggle('body-pd')
+                }
 
                 toggle.addEventListener('click', () => {
                     // show navbar
@@ -81,4 +81,30 @@
         }
         showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
     });
+
+    document.getElementById("header-toggle").addEventListener("click",toggleCookie);
+
+    function toggleCookie(){
+        var openToggle = getCookie("open")
+        if (openToggle == "true")
+            document.cookie = "open = false"
+        else
+            document.cookie = "open = true"
+    }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 </script>
