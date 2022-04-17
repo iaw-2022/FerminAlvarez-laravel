@@ -75,7 +75,11 @@
                                                                 value="{{ $author->id }}">
                                                         @endif
                                                     </td>
-                                                    <td class="fw-bold mb-1">{{ $author->name }}</td>
+                                                    <td>
+                                                        <a href="/author/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none" target="_blank">
+                                                            {{ $author->name }}
+                                                        </a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

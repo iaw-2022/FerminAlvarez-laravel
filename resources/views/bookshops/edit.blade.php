@@ -83,7 +83,9 @@
                                             </div>
                                         </td>
                                         <td>
-                                            {{ $book->name }}
+                                            <a href="/book/{{$book->ISBN}}" class="fw-bold mb-1 text-decoration-none" target="_blank">
+                                                {{ $book->name }}
+                                            </a>
                                         </td>
                                         <td>{{ $book->publisher }}</td>
                                         <td>{{ date('d-m-Y', strtotime($book->published_at)) }}</td>

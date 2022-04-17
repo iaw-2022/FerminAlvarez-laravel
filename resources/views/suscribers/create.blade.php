@@ -51,7 +51,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="/book/{{ $book->ISBN }}" class="fw-bold mb-1 text-decoration-none">
+                                            <a href="/book/{{$book->ISBN}}" class="fw-bold mb-1 text-decoration-none" target="_blank">
                                                 {{ $book->name }}
                                             </a>
                                         </td>
