@@ -120,7 +120,6 @@ class BookController extends Controller
         ]);
 
         $book = Book::find($request->ISBN);
-        $request->get('ISBN');
         $book->ISBN = $request->get('ISBN');
         $book->name = $request->get('name');
         $book->publisher = $request->get('publisher');

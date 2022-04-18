@@ -67,7 +67,7 @@
                                                     <input type="number" step="0.1" class="form-control"
                                                         placeholder="Indique su precio aquí" name="prices[]"
                                                         id="input{{ $book->ISBN }}" required="required"
-                                                        value="{{ $bookshop->books->where('ISBN', '9788466662321')->first()->pivot->price }}">
+                                                        value="{{ $bookshop->books->where('ISBN',$book->ISBN)->first()->pivot->price }}">
                                                 @else
                                                     <input type="checkbox" class="custom-control-input" id="customCheck1"
                                                         name="books[]" value="{{ $book->ISBN }}" onclick="var input = document.getElementById('input{{ $book->ISBN }}');
