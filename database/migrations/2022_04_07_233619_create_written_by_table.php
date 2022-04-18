@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->foreignId(Author::class)->onDelete('cascade');
             $table->string('ISBN');
-            $table->foreign('ISBN')->references('ISBN')->on('books')->onDelete('cascade');
+            $table->foreign('ISBN')->references('ISBN')->on('books')->onDelete('cascade')->onUpdate('cascade');;
             $table->timestamps();
         });
     }

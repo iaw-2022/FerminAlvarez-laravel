@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('has', function (Blueprint $table) {
             $table->decimal('price')->nullable();
             $table->string('ISBN');
-            $table->foreign('ISBN')->references('ISBN')->on('books')->onDelete('cascade');
+            $table->foreign('ISBN')->references('ISBN')->on('books')->onDelete('cascade')->onUpdate('cascade');;
             $table->foreignId(Bookshop::class)->onDelete('cascade');
             $table->timestamps();
         });

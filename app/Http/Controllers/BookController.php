@@ -118,8 +118,7 @@ class BookController extends Controller
             'category' => 'max:255',
             'image' => ''
         ]);
-
-        $book = Book::find($request->ISBN);
+        $book = Book::find($id);
         $book->ISBN = $request->get('ISBN');
         $book->name = $request->get('name');
         $book->publisher = $request->get('publisher');
