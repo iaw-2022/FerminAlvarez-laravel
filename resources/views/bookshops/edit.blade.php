@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Editar librería</h3>
                 </div>
-                <form action="/bookshops/{{ $bookshop->id }}" method="POST">
+                <form action="/bookshops/{{ $bookshop->id }}" method="POST" onsubmit="return confirm('¿Estás seguro que deseas realizar estos cambios?')">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
@@ -95,6 +95,11 @@
                         </table>
                         <div class="col-12 mt-5">
                             <button type="submit" class="btn btn-primary float-end">Guardar librería</button>
+                            <form action="/bookshops/{{ $bookshop->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar esta librería?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+                            </form>
                             <button type="button" class="btn btn-outline-secondary float-end me-2">
                                 <a href="/bookshops/{{$bookshop->id}}">Cancelar</a>
                             </button>

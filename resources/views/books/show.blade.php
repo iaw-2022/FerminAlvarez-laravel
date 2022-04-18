@@ -15,7 +15,7 @@
                 @endforeach
             </ul>
             <a href="/books/{{ $book->ISBN }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-            <form action="/books/{{ $book->ISBN }}" method="POST" class="d-inline">
+            <form action="/books/{{ $book->ISBN }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este libro?')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
