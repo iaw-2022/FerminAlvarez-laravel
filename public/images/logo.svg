@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="149.969 114.989 215.461 151.376" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style bx:fonts="Prompt">@import url(https://fonts.googleapis.com/css2?family=Prompt%3Aital%2Cwght%400%2C100%3B0%2C200%3B0%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B0%2C900%3B1%2C100%3B1%2C200%3B1%2C300%3B1%2C400%3B1%2C500%3B1%2C600%3B1%2C700%3B1%2C800%3B1%2C900&amp;display=swap);</style>
+  </defs>
+  <text style="fill: rgb(255, 255, 255); font-family: Prompt; font-size: 60px; font-weight: 700; text-anchor: middle; white-space: pre;" transform="matrix(1, 0, 0, 1, 233.05954, -68.788498)"><tspan x="24.64" y="249.486">Precios</tspan><tspan x="24.64" dy="1em">​</tspan><tspan>Libro</tspan><tspan style="font-size: 43px; font-weight: 900;">$</tspan></text>
+</svg>
