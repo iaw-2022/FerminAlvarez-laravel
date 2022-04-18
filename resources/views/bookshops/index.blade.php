@@ -31,7 +31,6 @@
                             </td>
                             <td>{{ $bookshop->city }}</td>
                             <td>{{ $bookshop->street ." ". $bookshop->number }}</td>
-                            <td></td>
                         </tr>
                     @endforeach
                 </tbody>
