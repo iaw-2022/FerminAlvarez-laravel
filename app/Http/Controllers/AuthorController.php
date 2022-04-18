@@ -55,6 +55,9 @@ class AuthorController extends Controller
     public function show($id)
     {
         $author = Author::find($id);
+        if($author==null)
+            abort(404);
+
         return view('authors.show')->with('author',$author);
     }
 
@@ -67,6 +70,8 @@ class AuthorController extends Controller
     public function edit($id)
     {
         $author = Author::find($id);
+        if($author==null)
+            abort(404);
         return view('authors.edit')->with('author',$author);
     }
 
@@ -84,6 +89,8 @@ class AuthorController extends Controller
         ]);
 
         $author = Author::find($id);
+        if($author==null)
+            abort(404);
         $author->name = $request->get('name');
         $author->save();
 
@@ -99,6 +106,8 @@ class AuthorController extends Controller
     public function destroy($id)
     {
         $author = Author::find($id);
+        if($author==null)
+            abort(404);
         $author->delete();
         return redirect("/authors");
     }

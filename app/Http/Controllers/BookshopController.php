@@ -80,6 +80,9 @@ class BookshopController extends Controller
     public function show($id)
     {
         $bookshop = Bookshop::find($id);
+        if($bookshop==null)
+            abort(404);
+
         $books = $bookshop->books();
         return view('bookshops.show',compact('bookshop'));
     }
@@ -93,6 +96,9 @@ class BookshopController extends Controller
     public function edit($id)
     {
         $bookshop = Bookshop::find($id);
+        if($bookshop==null)
+            abort(404);
+
         $books = Book::All();
         return view('bookshops.edit')->with('bookshop',$bookshop)->with('books',$books);
     }
@@ -116,6 +122,9 @@ class BookshopController extends Controller
 
 
         $bookshop = Bookshop::find($id);
+        if($bookshop==null)
+            abort(404);
+
         $bookshop->name = $request->get('name');
         $bookshop->city = $request->get('city');
         $bookshop->street = $request->get('street');
@@ -148,6 +157,9 @@ class BookshopController extends Controller
     public function destroy($id)
     {
         $bookshop = Bookshop::find($id);
+        if($bookshop==null)
+            abort(404);
+
         $bookshop->delete();
         return redirect("/bookshops");
     }

@@ -68,6 +68,9 @@ class SuscriberController extends Controller
     public function show($id)
     {
         $suscriber = Suscriber::find($id);
+        if($suscriber==null)
+            abort(404);
+
         return view('suscribers.show', compact('suscriber'));
     }
 
@@ -80,6 +83,9 @@ class SuscriberController extends Controller
     public function edit($id)
     {
         $suscriber = Suscriber::find($id);
+        if($suscriber==null)
+            abort(404);
+
         $books = Book::All();
         return view('suscribers.edit')->with('suscriber',$suscriber)->with('books',$books);
     }
@@ -98,6 +104,9 @@ class SuscriberController extends Controller
         ]);
 
         $suscriber = Suscriber::find($id);
+        if($suscriber==null)
+            abort(404);
+
         $suscriber->email = $request->get('email');
         $suscriber->save();
 
@@ -124,6 +133,9 @@ class SuscriberController extends Controller
     public function destroy($id)
     {
         $suscriber = Suscriber::find($id);
+        if($suscriber==null)
+            abort(404);
+
         $suscriber->delete();
         return redirect("/suscribers");
     }

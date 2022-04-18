@@ -84,6 +84,9 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::find($id);
+        if($book==null)
+            abort(404);
+
         return view('books.show')->with('book',$book);
     }
 
@@ -96,6 +99,9 @@ class BookController extends Controller
     public function edit($id)
     {
         $book = Book::find($id);
+        if($book==null)
+            abort(404);
+
         $authors = Author::All();
         return view('books.edit')->with('book',$book)->with('authors',$authors);
     }
@@ -119,6 +125,9 @@ class BookController extends Controller
             'image' => ''
         ]);
         $book = Book::find($id);
+        if($book==null)
+            abort(404);
+
         $book->ISBN = $request->get('ISBN');
         $book->name = $request->get('name');
         $book->publisher = $request->get('publisher');
@@ -150,6 +159,9 @@ class BookController extends Controller
     public function destroy($ISBN)
     {
         $book = Book::find($ISBN);
+        if($book==null)
+            abort(404);
+
         $book->delete();
         return redirect("/books");
     }
