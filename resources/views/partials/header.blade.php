@@ -88,9 +88,9 @@
         function toggleCookie(){
             var openToggle = getCookie("open")
             if (openToggle == "true")
-                document.cookie = "open = false"
+                document.cookie = "open = false; path=/;"
             else
-                document.cookie = "open = true"
+                document.cookie = "open = true; path=/;"
         }
 
         function getCookie(cname) {
