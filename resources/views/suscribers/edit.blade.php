@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Editar suscriptor</h3>
                 </div>
-                <form action="/suscribers/{{ $suscriber->id }}" method="POST" onsubmit="return confirm('¿Estás seguro que deseas realizar estos cambios?')">
+                <form action="/suscribers/{{ $suscriber->id }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
@@ -73,11 +73,6 @@
                         </table>
                         <div class="col-12 mt-5">
                             <button type="submit" class="btn btn-primary float-end">Guardar suscriptor</button>
-                            <form action="/suscribers/{{ $suscriber->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este suscriptor?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
-                            </form>
                             <button type="button" class="btn btn-outline-secondary float-end me-2">
                                 <a href="/suscribers/{{$suscriber->id}}">Cancelar</a>
                             </button>

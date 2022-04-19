@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Editar Autor</h3>
                 </div>
-                <form action="/authors/{{ $author->id }}" method="POST" onsubmit="return confirm('¿Estás seguro que deseas realizar este cambio?')">
+                <form action="/authors/{{ $author->id }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
@@ -28,11 +28,6 @@
                         </div>
                         <div class="col-12 mt-5">
                             <button type="submit" class="btn btn-primary float-end mx-2">Guardar Autor</button>
-                            <form action="/authors/{{ $author->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este autor?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
-                            </form>
                             <button type="button" class="btn btn-outline-secondary float-end mx-2">
                                 <a href="/authors/{{$author->id}}">Cancelar</a>
                             </button>

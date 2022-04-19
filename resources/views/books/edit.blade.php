@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Nuevo Libro</h3>
                 </div>
-                <form action="/books/{{ $book->ISBN }}" method="POST" onsubmit="return confirm('¿Estás seguro que deseas realizar estos cambios?')">
+                <form action="/books/{{ $book->ISBN }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
@@ -89,11 +89,6 @@
                         </div>
                     <div class="col-12 mt-5">
                         <button type="submit" class="btn btn-primary float-end">Guardar libro</button>
-                        <form action="/books/{{ $book->ISBN }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este libro?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
-                        </form>
                         <button type="button" class="btn btn-outline-secondary float-end me-2">
                             <a href="/books/{{$book->ISBN}}">Cancelar</a>
                         </button>
