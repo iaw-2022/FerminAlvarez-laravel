@@ -16,6 +16,15 @@
         </div>
     </div>
     <div class="row">
+        @if ($errors->count() > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="aligns-items-center mt-3 col-lg-12">
             <table class="table align-middle table-striped display nowrap" cellspacing="0" id="authors-table" width=100%>
                 <thead class="bg-light text-center">

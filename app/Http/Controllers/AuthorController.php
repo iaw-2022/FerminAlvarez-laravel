@@ -108,7 +108,12 @@ class AuthorController extends Controller
         $author = Author::find($id);
         if($author==null)
             abort(404);
-        $author->delete();
+
+        try{
+            $author->delete();
+        }catch(\Exception $e){
+            return redirect("/authors/".$author->id)->withErrors("El autor no se pudo eliminar, debe primero eliminar los libros a los que pertenece o quitar su autoría.");
+        }
         return redirect("/authors");
     }
 }
