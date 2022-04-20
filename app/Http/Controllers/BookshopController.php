@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Bookshop;
 use App\Models\Has;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookshopController extends Controller
 {
@@ -129,21 +130,29 @@ class BookshopController extends Controller
         $bookshop->city = $request->get('city');
         $bookshop->street = $request->get('street');
         $bookshop->number = $request->get('number');
-        $bookshop->save();
+        try {
+            // Begin a transaction
+            DB::beginTransaction();
+            $bookshop->save();
+            $bookshop->books()->detach();
 
-        $bookshop->books()->detach();
+            $books = $request->input('books');
+            $prices = $request->input('prices');
+            $index = 0;
 
-        $books = $request->input('books');
-        $prices = $request->input('prices');
-        $index = 0;
-
-        foreach((array)$books as $book){
-            $has = new Has();
-            $has->price = $prices[$index++];
-            $has->ISBN = $book;
-            $has->Bookshop = $bookshop->id;
-            $has->save();
+            foreach((array)$books as $book){
+                $has = new Has();
+                $has->price = $prices[$index++];
+                $has->ISBN = $book;
+                $has->Bookshop = $bookshop->id;
+                $has->save();
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            throw $e;
         }
+
 
         return redirect("/bookshops/".$bookshop->id);
     }

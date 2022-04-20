@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\WrittenBy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -135,17 +136,26 @@ class BookController extends Controller
         $book->published_at = $request->get('published_at');
         $book->category = $request->get('category');
         $book->image_link = $request->get('image_link');
-        $book->save();
 
-        $book->authors()->detach();
+        try{
+            DB::beginTransaction();
+            $book->save();
+            $book->authors()->detach();
 
-        $authors = $request->input('authors');
-        foreach((array) $authors as $author){
-            $written_by = new WrittenBy();
-            $written_by->Author = $author;
-            $written_by->ISBN = $book->ISBN;
-            $written_by->save();
+            $authors = $request->input('authors');
+            foreach((array) $authors as $author){
+                $written_by = new WrittenBy();
+                $written_by->Author = $author;
+                $written_by->ISBN = $book->ISBN;
+                $written_by->save();
+            }
+            DB::commit();
+
+        }catch(\Exception $e){
+            DB::rollback();
+            throw $e;
         }
+
 
         return redirect("/books/".$book->ISBN);
     }

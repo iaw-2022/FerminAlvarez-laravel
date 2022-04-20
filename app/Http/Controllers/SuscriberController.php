@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Suscribed;
 use Illuminate\Http\Request;
 use App\Models\Suscriber;
+use Illuminate\Support\Facades\DB;
 
 class SuscriberController extends Controller
 {
@@ -108,17 +109,24 @@ class SuscriberController extends Controller
             abort(404);
 
         $suscriber->email = $request->get('email');
-        $suscriber->save();
+        try{
+            $suscriber->save();
+            $books = $request->input('books');
 
-        $books = $request->input('books');
+            $suscriber->books()->detach();
+            foreach((array) $books as $book){
+                $suscribed = new Suscribed();
+                $suscribed->id_suscriber = $suscriber->id;
+                $suscribed->ISBN = $book;
+                $suscribed->save();
+            }
+            DB::commit();
 
-        $suscriber->books()->detach();
-        foreach((array) $books as $book){
-            $suscribed = new Suscribed();
-            $suscribed->id_suscriber = $suscriber->id;
-            $suscribed->ISBN = $book;
-            $suscribed->save();
+        }catch(\Exception $e){
+            DB::rollback();
+            throw $e;
         }
+
 
 
         return redirect("/suscribers/".$suscriber->id);
