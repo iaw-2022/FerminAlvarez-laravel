@@ -52,6 +52,12 @@ class BookController extends Controller
             'image' => ''
         ]);
 
+        if(Book::find($request->get('ISBN')) != null){
+            return redirect("/books/create")->withErrors("Ya existe ese ISBN");
+        }else
+
+
+
         $book = new Book();
         $book->ISBN = $request->get('ISBN');
         $book->name = $request->get('name');
