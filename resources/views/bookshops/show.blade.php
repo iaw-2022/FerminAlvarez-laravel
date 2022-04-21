@@ -3,6 +3,15 @@
 @section('title', 'Librería')
 
 @section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="card text-center ">
         <div class="card-body ">
             <h2 class="card-title">{{ $bookshop->name }}</h2>
@@ -11,7 +20,8 @@
                 Calle: {{ $bookshop->street }} <br>
                 Número: {{ $bookshop->number }}</p>
             <a href="/bookshops/{{ $bookshop->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-            <form action="/bookshops/{{ $bookshop->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar esta librería?')">
+            <form action="/bookshops/{{ $bookshop->id }}" method="POST" class="d-inline"
+                onsubmit="return confirm('¿Estás seguro que deseas eliminar esta librería?')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
@@ -48,7 +58,13 @@
                                 </a>
                             </td>
                             <td>{{ $book->publisher }}</td>
-                            <td class="fw-bold" style="color:green">@money($book->pivot->price)</td>
+                            <td class="fw-bold" style="color:green">
+                                @money($book->pivot->price)<br>
+                                <a href="/bookshop/{{ $bookshop->id }}/book/{{ $book->ISBN }}"
+                                    class="fw-bold mb-1 text-decoration-none">
+                                    ACTUALIZAR PRECIO
+                                </a>
+                            </td>
                             <td>{{ date('d-m-Y', strtotime($book->published_at)) }}</td>
                             <td>
                                 @foreach ($book->authors as $author)

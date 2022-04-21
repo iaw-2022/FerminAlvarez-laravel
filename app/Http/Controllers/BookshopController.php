@@ -7,6 +7,7 @@ use App\Models\Bookshop;
 use App\Models\Has;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class BookshopController extends Controller
 {
@@ -171,5 +172,65 @@ class BookshopController extends Controller
 
         $bookshop->delete();
         return redirect("/bookshops");
+    }
+
+    public function showOnlinePrice($id , $ISBN){
+        $bookshop = Bookshop::find($id);
+        if($bookshop==null)
+            abort(404);
+
+        $bookshopReference = $this->getURL($bookshop->name);
+        $request = $this->callAPI($bookshopReference,$ISBN);
+
+        if($request->status() != 200){
+            return redirect("/bookshops/".$bookshop->id)->withErrors("No se pudo encontrar el precio en línea");
+        }
+
+        $onlinePrice = $request->json();
+
+        $book = $bookshop->books()->find($ISBN);
+        return view ('bookshops.price')->with('book',$book)->with('onlinePrice',$onlinePrice)->with('bookshopID',$bookshop->id);
+    }
+
+    private function getURL($bookshopName){
+        $URL = null;
+        if($bookshopName != null){
+            if ($bookshopName == "Librería Don Quijote") {
+                $URL = "libreriadonquijote";
+            } elseif ($bookshopName == "Cúspide") {
+                $URL = "cuspide";
+            } elseif ($bookshopName == "BuscaLibre") {
+                $URL = "buscalibre";
+            } elseif ($bookshopName == "Tematika") {
+                $URL = "tematika";
+            }
+        }
+        return $URL;
+    }
+
+    private function callAPI($bookshopReference, $ISBN){
+        return HTTP::get('https://scrappinglibreriaapi.herokuapp.com/'.$bookshopReference.'/'.$ISBN);
+    }
+
+    public function updatePrice(Request $request, $id, $ISBN)
+    {
+        $request->validate([
+            'price' => 'required|integer',
+            'id' => 'integer',
+            'ISBN' => 'integer'
+        ]);
+
+
+        $price = $request->get('price');
+
+        $bookshop = Bookshop::find($id);
+        if($bookshop==null)
+            abort(404);
+
+        $has = Has::find([$id, $ISBN])[0];
+        $has->price = $price;
+        $has->save();
+
+        return redirect("/bookshops/".$bookshop->id);
     }
 }
