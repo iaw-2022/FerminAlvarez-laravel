@@ -183,7 +183,8 @@ class BookshopController extends Controller
         $request = $this->callAPI($bookshopReference,$ISBN);
 
         if($request->status() != 200){
-            return redirect("/bookshops/".$bookshop->id)->withErrors("No se pudo encontrar el precio en línea");
+            return redirect("/bookshops/".$bookshop->id)->withErrors(["No se pudo encontrar el precio en línea",
+            "El ISBN es incorrecto o no está publicado en la página de la librería"]);
         }
 
         $onlinePrice = $request->json();
@@ -209,7 +210,8 @@ class BookshopController extends Controller
     }
 
     private function callAPI($bookshopReference, $ISBN){
-        return HTTP::get('https://scrappinglibreriaapi.herokuapp.com/'.$bookshopReference.'/'.$ISBN);
+        $APIUrl = env('SCRAPPING_API');
+        return HTTP::get($APIUrl.'/'.$bookshopReference.'/'.$ISBN);
     }
 
     public function updatePrice(Request $request, $id, $ISBN)
