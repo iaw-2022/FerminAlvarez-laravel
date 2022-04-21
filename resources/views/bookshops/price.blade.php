@@ -27,18 +27,17 @@
                 <a href="{{$onlinePrice['Link']}}" class="fw-bold mb-1 text-decoration-none" target="_blank">
                     Enlace al libro de la tienda.
                 </a>
-                <form action="/bookshop/{{$bookshopID}}/book/{{$book->ISBN}}/update" method="POST">
+                <form action="/bookshop/{{$bookshopID}}/book/{{$book->ISBN}}/update" method="POST" class="text-center">
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="price" value="{{$onlinePrice['Precio']}}">
-                    <button type="button" class="btn btn-outline-secondary float-end me-2">
+                    <button type="button" class="btn btn-outline-secondary me-2">
                         <a href="/bookshops/{{$bookshopID}}">Cancelar</a>
                     </button>
+                    <button type="submit" class="btn btn-outline-primary me-2">Actualizar</button>
                 </form>
             </p>
         </div>
     </div>
     @endif
-
-
 @endsection
