@@ -24,8 +24,6 @@ Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middl
 
 Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth','role:admin']);
 
-Route::get('/bookshop/{id}/book/{ISBN}', [BookshopController::class, 'showOnlinePrice'])->middleware(['auth','role:admin']);
 
-Route::put('/bookshop/{id}/book/{ISBN}/update', [BookshopController::class, 'updatePrice'])->middleware(['auth','role:admin']);
 
 require __DIR__ . '/auth.php';
