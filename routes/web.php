@@ -16,16 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
 
-Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['auth']);
+Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['auth','role:admin']);
 
-Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth']);
+Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth','role:bookshopOwner']);
 
-Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middleware(['auth']);
+Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middleware(['auth','role:admin']);
 
-Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth']);
+Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth','role:admin']);
 
-Route::get('/bookshop/{id}/book/{ISBN}', [BookshopController::class, 'showOnlinePrice']);
+Route::get('/bookshop/{id}/book/{ISBN}', [BookshopController::class, 'showOnlinePrice'])->middleware(['auth','role:admin']);
 
-Route::put('/bookshop/{id}/book/{ISBN}/update', [BookshopController::class, 'updatePrice']);
+Route::put('/bookshop/{id}/book/{ISBN}/update', [BookshopController::class, 'updatePrice'])->middleware(['auth','role:admin']);
 
 require __DIR__ . '/auth.php';
