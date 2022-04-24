@@ -35,8 +35,12 @@
                     <span class="text-light">Librerías</span>
                 </a>
                 <a href="/suscribers" class="nav_link">
-                    <i class='bx bx-user-plus nav_icon'></i>
+                    <i class='bx bx-book-reader nav_icon'></i>
                     <span class="text-light">Suscriptores</span>
+                </a>
+                <a href="/users" class="nav_link">
+                    <i class='bx bx-user-plus nav_icon'></i>
+                    <span class="text-light">Users</span>
                 </a>
             </div>
         </div>

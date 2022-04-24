@@ -24,6 +24,8 @@ Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middl
 
 Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth']);
 
+Route::resource('users', 'App\Http\Controllers\UserController')->middleware(['auth']);
+
 Route::get('/bookshop/{bookshop}/book/{ISBN}', [BookshopController::class, 'showOnlinePrice'])->middleware(['auth']);
 
 Route::put('/bookshop/{bookshop}/book/{ISBN}/update', [BookshopController::class, 'updatePrice'])->middleware(['auth']);
