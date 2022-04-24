@@ -19,13 +19,15 @@
             <p class="card-text">{{ $bookshop->city }} <br>
                 Calle: {{ $bookshop->street }} <br>
                 Número: {{ $bookshop->number }}</p>
-            <a href="/bookshops/{{ $bookshop->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-            <form action="/bookshops/{{ $bookshop->id }}" method="POST" class="d-inline"
-                onsubmit="return confirm('¿Estás seguro que deseas eliminar esta librería?')">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
-            </form>
+                <a href="/bookshops/{{ $bookshop->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+            @if(Auth::user()->hasRole()=="admin")
+                <form action="/bookshops/{{ $bookshop->id }}" method="POST" class="d-inline"
+                    onsubmit="return confirm('¿Estás seguro que deseas eliminar esta librería?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+                </form>
+            @endif
         </div>
     </div>
     <div class="row">

@@ -6,12 +6,14 @@
     <div class="card text-center ">
         <div class="card-body ">
             <h2 class="card-title">{{ $suscriber->email }}</h2>
-            <a href="/suscribers/{{ $suscriber->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-            <form action="/suscribers/{{ $suscriber->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este suscriptor?')">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
-            </form>
+            @if(Auth::user()->hasRole()=="admin")
+                <a href="/suscribers/{{ $suscriber->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+                <form action="/suscribers/{{ $suscriber->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este suscriptor?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+                </form>
+            @endif
         </div>
     </div>
     <div class="row">
