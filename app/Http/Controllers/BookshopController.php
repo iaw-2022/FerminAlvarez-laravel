@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Http;
 
 class BookshopController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('canSeeBookshops')->only('index','show');
+        $this->middleware('canManageBookshops:')->except('index','show');
+    }
     /**
      * Display a listing of the resource.
      *

@@ -20,7 +20,7 @@ class RoleSeeder extends Seeder
                     'role' => "admin"
                 ],
                 [
-                    'role' => "bookshopOwner"
+                    'role' => "bookshop"
                 ],
                 [
                     'role' => "user"

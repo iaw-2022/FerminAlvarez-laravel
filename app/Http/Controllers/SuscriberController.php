@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class SuscriberController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('canSeeSuscribers')->only('index','show');
+        $this->middleware('canManageSuscribers')->except('index','show');
+    }
     /**
      * Display a listing of the resource.
      *

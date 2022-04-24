@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
 
-Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['auth','role:admin']);
+Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['auth']);
 
-Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth','role:bookshopOwner']);
+Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth']);
 
-Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middleware(['auth','role:admin']);
+Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middleware(['auth']);
 
-Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth','role:admin']);
+Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth']);
 
 
 

@@ -43,7 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function hasRole($role){
-        return $this->hasOne(Role::class, 'id','role')->first()->role == $role;
+    public function hasRole(){
+        return $this->hasOne(Role::class, 'id','role')->first()->role;
+    }
+
+    public function bookshop(){
+        return $this->belongsTo(Bookshop::class, 'id','user_id')->first();
     }
 }

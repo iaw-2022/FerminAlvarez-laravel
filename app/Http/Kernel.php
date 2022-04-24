@@ -63,6 +63,13 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'role' => \App\Http\Middleware\EnsureUserHasRole::class,
+        'canSeeAuthors' => \App\Http\Middleware\CanSeeAuthors::class,
+        'canManageAuthors' => \App\Http\Middleware\CanManageAuthors::class,
+        'canSeeBooks' => \App\Http\Middleware\CanSeeBooks::class,
+        'canManageBooks' => \App\Http\Middleware\CanManageBooks::class,
+        'canSeeBookshops' => \App\Http\Middleware\CanSeeBookshops::class,
+        'canManageBookshops' => \App\Http\Middleware\CanManageBookshops::class,
+        'canSeeSuscribers' => \App\Http\Middleware\CanSeeSuscribers::class,
+        'canManageSuscribers' => \App\Http\Middleware\CanManageSuscribers::class,
     ];
 }

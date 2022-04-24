@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('canSeeBooks')->only('index','show');
+        $this->middleware('canManageBooks')->except('index','show');
+    }
     /**
      * Display a listing of the resource.
      *
