@@ -17,7 +17,6 @@ class CanManageBookshops
     public function handle(Request $request, Closure $next)
     {
         $bookshop = $request->route()->parameter('bookshop');
-
         if($request->user()->hasRole()=="admin" || ($request->user()->hasRole()=="bookshop")
         && $request->user()->bookshop()->id == $bookshop)
             return $next($request);

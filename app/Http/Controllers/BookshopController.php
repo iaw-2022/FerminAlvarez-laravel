@@ -15,7 +15,7 @@ class BookshopController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('canSeeBookshops')->only('index','show');
-        $this->middleware('canManageBookshops:')->except('index','show');
+        $this->middleware('canManageBookshops')->except('index','show');
     }
     /**
      * Display a listing of the resource.
