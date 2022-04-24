@@ -18,7 +18,7 @@ class CanManageBookshops
     {
         $bookshop = $request->route()->parameter('bookshop');
         if($request->user()->hasRole()=="admin" || ($request->user()->hasRole()=="bookshop")
-        && $request->user()->bookshop()->id == $bookshop)
+        && $request->user()->bookshop($bookshop) != null)
             return $next($request);
         else{
             return response()->view('layouts.unauthorized');

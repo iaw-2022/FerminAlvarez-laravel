@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Bookshop;
 use App\Models\Has;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -107,8 +108,9 @@ class BookshopController extends Controller
         if($bookshop==null)
             abort(404);
 
+        $users = User::All();
         $books = Book::All();
-        return view('bookshops.edit')->with('bookshop',$bookshop)->with('books',$books);
+        return view('bookshops.edit')->with('bookshop',$bookshop)->with('books',$books)->with('users',$users);
     }
 
     /**
@@ -125,6 +127,7 @@ class BookshopController extends Controller
             'city' => 'nullable|max:255',
             'street' => 'nullable|max:255',
             'number' => 'nullable|max:255',
+            'user' => 'required|integer',
             'prices.*' => 'gt:0'
         ]);
 
@@ -137,6 +140,7 @@ class BookshopController extends Controller
         $bookshop->city = $request->get('city');
         $bookshop->street = $request->get('street');
         $bookshop->number = $request->get('number');
+        $bookshop->user_id = $request->get('user');
         try {
             // Begin a transaction
             DB::beginTransaction();

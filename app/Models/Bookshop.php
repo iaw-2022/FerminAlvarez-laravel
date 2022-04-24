@@ -20,10 +20,15 @@ class Bookshop extends Model
         'name',
         'city',
         'street',
-        'number'
+        'number',
+        'user_id'
     ];
 
     public function books(){
         return $this->belongsToMany(Book::class,'has','Bookshop','ISBN')->withPivot('price')->withTimestamps();
+    }
+
+    public function user(){
+        return $this->hasOne(User::class, 'id','user_id')->first();
     }
 }

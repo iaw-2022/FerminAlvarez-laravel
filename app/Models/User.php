@@ -47,7 +47,7 @@ class User extends Authenticatable
         return $this->hasOne(Role::class, 'id','role')->first()->role;
     }
 
-    public function bookshop(){
-        return $this->belongsTo(Bookshop::class, 'id','user_id')->first();
+    public function bookshop($id){
+        return $this->belongsTo(Bookshop::class, 'id','user_id')->where('bookshops.id',$id)->first();
     }
 }

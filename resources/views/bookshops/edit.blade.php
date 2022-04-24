@@ -37,6 +37,17 @@
                         <div class="col-md-6">
                             <input type="number" step="1" class="form-control" placeholder="Número" name="number"  value="{{ $bookshop->number }}">
                         </div>
+                        <div class="col-md-6 mx-auto">
+                            <select class="form-select mx-auto" aria-label="Default select example" style="width:50%;"  name="user">
+                                @foreach ($users as $user)
+                                    @if($user->id === $bookshop->user()->id)
+                                        <option value={{ $user->id }} selected>{{ $user->name}} - {{$user->email}} </option>
+                                    @else
+                                        <option value={{ $user->id }}>{{ $user->name}} - {{$user->email}} </option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
                         <table class="table align-middle table-striped display nowrap" cellspacing="0" id="books-table"
                             width=100%>
                             <thead class="bg-light text-center">
