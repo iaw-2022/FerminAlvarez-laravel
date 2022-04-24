@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-md-12 text-center">
                             <p>Seleccione el rol del usuario</p>
-                            <select class="form-select mx-auto" aria-label="Default select example" style="width:50%;"  name="rol">
+                            <select class="form-select mx-auto" style="width:50%;"  name="rol">
                                 @foreach ($roles as $rol)
                                     <option value={{ $rol->id }}>{{ $rol->role }} </option>
                                 @endforeach

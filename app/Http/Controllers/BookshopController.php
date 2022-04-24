@@ -37,7 +37,8 @@ class BookshopController extends Controller
     public function create()
     {
         $books = Book::all();
-        return view ('bookshops.create') -> with('books',$books);
+        $users = User::all();
+        return view ('bookshops.create')->with('books',$books)-> with('users',$users);
     }
 
     /**
@@ -53,6 +54,7 @@ class BookshopController extends Controller
             'city' => 'nullable|max:255',
             'street' => 'nullable|max:255',
             'number' => 'nullable|max:255',
+            'user' => 'required|integer',
             'prices.*' => 'gt:0'
         ]);
 
@@ -62,6 +64,7 @@ class BookshopController extends Controller
         $bookshop->city = $request->get('city');
         $bookshop->street = $request->get('street');
         $bookshop->number = $request->get('number');
+        $bookshop->user_id = $request->get('user');
 
         $bookshop->save();
 

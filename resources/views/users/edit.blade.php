@@ -43,7 +43,7 @@
                         </div>
                         <div class="col-md-12 text-center">
                             <p>Seleccione el rol del usuario</p>
-                            <select class="form-select mx-auto" aria-label="Default select example" style="width:50%;"  name="rol">
+                            <select class="form-select mx-auto" style="width:50%;"  name="rol">
                                 @foreach ($roles as $rol)
                                     @if($user->hasRole() === $rol->role)
                                         <option value={{ $rol->id }} selected>{{ $rol->role }} </option>
