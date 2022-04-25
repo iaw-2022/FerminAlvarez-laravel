@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\WrittenBy;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Dropbox\Client as client;
 
 class BookController extends Controller
 {
@@ -15,6 +18,7 @@ class BookController extends Controller
         $this->middleware('auth');
         $this->middleware('canSeeBooks')->only('index','show');
         $this->middleware('canManageBooks')->except('index','show');
+        $this->client = new client(env('DROPBOX_TOKEN'));
     }
     /**
      * Display a listing of the resource.
@@ -55,14 +59,17 @@ class BookController extends Controller
             'total_pages' => 'integer',
             'published_at' => 'nullable|date',
             'category' => 'max:255',
-            'image' => ''
+            'image' => 'required|image|max:1000'
         ]);
 
-        if(Book::find($request->get('ISBN')) != null){
+        if(Book::find($request->get('ISBN')) != null)
             return redirect("/books/create")->withErrors("Ya existe ese ISBN");
-        }else
 
-
+        try{
+            $image_link = $this->saveImage($request->file('image'));
+        }catch (Exception $e){
+            return redirect("/books/create")->withErrors("Ocurrió un error al almacenar la imagen\n");
+        }
 
         $book = new Book();
         $book->ISBN = $request->get('ISBN');
@@ -71,7 +78,7 @@ class BookController extends Controller
         $book->total_pages = $request->get('total_pages');
         $book->published_at = $request->get('published_at');
         $book->category = $request->get('category');
-        $book->image_link = $request->get('image_link');
+        $book->image_link = $image_link;
 
         $book->save();
 
@@ -86,6 +93,14 @@ class BookController extends Controller
 
 
         return redirect("/books");
+    }
+
+    private function saveImage($image){
+        $img_created = Storage::disk('dropbox')->put("/images", $image);
+        $response_link = $this->client->createSharedLinkWithSettings($img_created);
+        $public_link = str_replace('dl=0','raw=1',$response_link['url']);
+        return $public_link;
+
     }
 
     /**
