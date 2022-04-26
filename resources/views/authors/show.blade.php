@@ -6,7 +6,6 @@
     <div class="card text-center ">
         <div class="card-body ">
             <h2 class="card-title">{{ $author->name }}</h2>
-            <h3 class="card-subtitle">Código: {{ $author->id }}</h3>
             @if(Auth::user()->hasRole()=="admin")
                 <a href="/authors/{{ $author->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
                 <form action="/authors/{{ $author->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este autor?')">

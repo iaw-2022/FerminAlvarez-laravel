@@ -17,14 +17,12 @@
             <table class="table align-middle table-striped display nowrap" cellspacing="0" id="authors-table" width=100%>
                 <thead class="bg-light text-center">
                     <tr>
-                        <th>ID</th>
                         <th>Nombre</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($authors as $author)
                         <tr class="text-center">
-                            <td>{{ $author->id }}</td>
                             <td>
                                 <a href="/authors/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none">
                                     {{ $author->name }}

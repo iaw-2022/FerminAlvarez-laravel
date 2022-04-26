@@ -15,7 +15,6 @@
     <div class="card text-center ">
         <div class="card-body ">
             <h2 class="card-title">{{ $bookshop->name }}</h2>
-            <h3 class="card-subtitle">Código: {{ $bookshop->id }}</h3>
             <p class="card-text">{{ $bookshop->city }} <br>
                 Calle: {{ $bookshop->street }} <br>
                 Número: {{ $bookshop->number }}</p>
