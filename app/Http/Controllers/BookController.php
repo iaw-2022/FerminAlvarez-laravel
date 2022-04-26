@@ -177,7 +177,7 @@ class BookController extends Controller
                 $image_path = $this->saveImage($request->file('image'));
                 $image_link = $this->generatePublicLink($image_path);
             }catch (Exception $e){
-                return redirect("/books/create")->withErrors("Ocurrió un error al almacenar la imagen\n $e");
+                return redirect("/books/$id/edit")->withErrors("Ocurrió un error al almacenar la imagen\n");
             }
             $book->image_link = $image_link;
             $book->image_path = $image_path;
