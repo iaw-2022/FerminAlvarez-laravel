@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Nuevo Libro</h3>
                 </div>
-                <form action="/books/{{ $book->ISBN }}" method="POST">
+                <form action="/books/{{ $book->ISBN }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
@@ -47,8 +47,8 @@
                                 value="{{ $book->category }}">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="IMAGE_LINK" name="image_link"
-                                value="{{ $book->image_link }}">
+                            <input type="file" class="form-control" accept="image/*" onchange="loadFile(event)" name="image">
+                            <img src="{{$book->image_link}}" class="mt-3 book-img" id="output"/>
                         </div>
                         <div class="col-12">
                             <div class="row">
@@ -97,5 +97,16 @@
             </div>
         </div>
     </div>
+    @section('js')
+        <script>
+            var loadFile = function(event) {
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+                output.onload = function() {
+                    URL.revokeObjectURL(output.src)
+                }
+            };
+        </script>
+    @endsection
 @section('table_name', 'authors-table')
 @endsection

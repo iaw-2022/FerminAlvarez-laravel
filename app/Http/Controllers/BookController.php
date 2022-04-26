@@ -66,9 +66,10 @@ class BookController extends Controller
             return redirect("/books/create")->withErrors("Ya existe ese ISBN");
 
         try{
-            $image_link = $this->saveImage($request->file('image'));
+            $image_path = $this->saveImage($request->file('image'));
+            $image_link = $this->generatePublicLink($image_path);
         }catch (Exception $e){
-            return redirect("/books/create")->withErrors("Ocurrió un error al almacenar la imagen\n");
+            return redirect("/books/create")->withErrors("Ocurrió un error al almacenar la imagen\n $e");
         }
 
         $book = new Book();
@@ -79,6 +80,7 @@ class BookController extends Controller
         $book->published_at = $request->get('published_at');
         $book->category = $request->get('category');
         $book->image_link = $image_link;
+        $book->image_path = $image_path;
 
         $book->save();
 
@@ -96,12 +98,16 @@ class BookController extends Controller
     }
 
     private function saveImage($image){
-        $img_created = Storage::disk('dropbox')->put("/images", $image);
-        $response_link = $this->client->createSharedLinkWithSettings($img_created);
+        $image_created = Storage::disk('dropbox')->put("/images", $image);
+        return $image_created;
+    }
+
+    private function generatePublicLink($image_created){
+        $response_link = $this->client->createSharedLinkWithSettings($image_created);
         $public_link = str_replace('dl=0','raw=1',$response_link['url']);
         return $public_link;
-
     }
+
 
     /**
      * Display the specified resource.
@@ -162,7 +168,20 @@ class BookController extends Controller
         $book->total_pages = $request->get('total_pages');
         $book->published_at = $request->get('published_at');
         $book->category = $request->get('category');
-        $book->image_link = $request->get('image_link');
+
+        $image = $request->file('image');
+
+        if($image != null){
+            try{
+                $this->deleteImage($book->image_path);
+                $image_path = $this->saveImage($request->file('image'));
+                $image_link = $this->generatePublicLink($image_path);
+            }catch (Exception $e){
+                return redirect("/books/create")->withErrors("Ocurrió un error al almacenar la imagen\n $e");
+            }
+            $book->image_link = $image_link;
+            $book->image_path = $image_path;
+        }
 
         try{
             DB::beginTransaction();
@@ -187,6 +206,10 @@ class BookController extends Controller
         return redirect("/books/".$book->ISBN);
     }
 
+    private function deleteImage($image){
+        $img_created = Storage::disk('dropbox')->delete($image);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -198,6 +221,9 @@ class BookController extends Controller
         $book = Book::find($ISBN);
         if($book==null)
             abort(404);
+
+        if($book->image_path != null)
+            $this->deleteImage($book->image_path);
 
         $book->delete();
         return redirect("/books");

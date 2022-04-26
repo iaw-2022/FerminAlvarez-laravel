@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->string('ISBN')->primary();
             $table->string('name');
-            $table->string('publisher')->nullable();;
-            $table->tinyInteger('total_pages')->nullable();;
+            $table->string('publisher')->nullable();
+            $table->tinyInteger('total_pages')->nullable();
             $table->date('published_at')->nullable();
-            $table->string('category')->nullable();;
-            $table->string('image_link')->nullable();;
+            $table->string('category')->nullable();
+            $table->string('image_link')->nullable();
+            $table->string('image_path')->nullable();
             $table->timestamps();
         });
     }

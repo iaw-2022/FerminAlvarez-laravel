@@ -23,7 +23,8 @@ class BookSeeder extends Seeder
                 'total_pages' => '336',
                 'published_at' => '2016-02-23',
                 'category' => 'Fiction',
-                'image_link' => 'http://books.google.com/books/content?id=FT_YjgEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api'
+                'image_link' => '',
+                'image_path' => ''
             ],
             [
                 'ISBN' => '9788466662321',
@@ -32,7 +33,8 @@ class BookSeeder extends Seeder
                 'total_pages' => '650',
                 'published_at' => '2018-02-27',
                 'category' => 'Fiction',
-                'image_link' => 'http://books.google.com/books/content?id=kCbuswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+                'image_link' => '',
+                'image_path' => ''
             ]
         ];
         DB::table('books')->insert($data);
