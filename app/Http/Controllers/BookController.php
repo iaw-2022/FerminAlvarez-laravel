@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\WrittenBy;
+use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,7 +42,8 @@ class BookController extends Controller
     public function create()
     {
         $authors = Author::all();
-        return view ('books.create') -> with('authors',$authors);
+        $categories = Category::all();
+        return view ('books.create') -> with('authors',$authors) -> with('categories',$categories);
     }
 
     /**
@@ -137,7 +139,8 @@ class BookController extends Controller
             abort(404);
 
         $authors = Author::All();
-        return view('books.edit')->with('book',$book)->with('authors',$authors);
+        $categories = Category::all();
+        return view('books.edit')->with('book',$book)->with('authors',$authors)->with('categories',$categories);
     }
 
     /**

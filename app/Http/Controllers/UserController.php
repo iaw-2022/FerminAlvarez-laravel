@@ -62,20 +62,6 @@ class UserController extends Controller
         return redirect("/users");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        // $user = User::find($id);
-        // if($user==null)
-        //     abort(404);
-
-        // return view('users.show')->with('user',$user);
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -127,12 +113,12 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        // $suscriber = Suscriber::find($id);
-        // if($suscriber==null)
-        //     abort(404);
+     {
+        $user = User::find($id);
+        if($user==null)
+            abort(404);
 
-        // $suscriber->delete();
-        // return redirect("/suscribers");
+        $user->delete();
+        return redirect("/users");
     }
 }

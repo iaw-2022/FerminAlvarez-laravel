@@ -43,8 +43,15 @@
                                 value="{{ $book->published_at }}">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="Categoría" name="category"
-                                value="{{ $book->category }}">
+                            <select name="category" id="" class="form-control" required>
+                                @foreach ($categories as $category)
+                                    @if($category->id == $book->category()->first()->id)
+                                        <option value="{{$category->id}}" selected>{{$category->name}}</option>
+                                    @else
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <input type="file" class="form-control" accept="image/*" onchange="loadFile(event)" name="image">

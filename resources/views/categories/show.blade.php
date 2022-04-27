@@ -1,18 +1,32 @@
 @extends('layouts.template')
 
-@section('title', 'Libros')
+@section('title', 'Categoría')
 
 @section('content')
-    @if(Auth::user()->hasRole()=="admin")
-        <div class="title-container d-flex justify-content-between">
-            <h2 class="card-title">Libros</h2>
-            <button class="btn btn-primary ml-4">
-                <a href="/books/create" class="text-light">Nuevo Libro</a>
-            </button>
+    <div class="card text-center ">
+        <div class="card-body ">
+            <h2 class="card-title"> Libros de la categoría {{ $category->name }}</h2>
+            @if(Auth::user()->hasRole()=="admin")
+                <a href="/categories/{{ $category->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+                <form action="/categories/{{ $category->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este categoría?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+                </form>
+            @endif
         </div>
-    @endif
+    </div>
     <div class="row">
-        <div class="aligns-items-center mt-3 col-lg-12 shadow-lg p-3 mb-5 bg-body rounded">
+        @if ($errors->count() > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        <div class="aligns-items-center mt-3 col-lg-12">
             <table class="table align-middle table-striped display nowrap" cellspacing="0" id="books-table" width=100%>
                 <thead class="bg-light text-center">
                     <tr>
@@ -20,14 +34,13 @@
                         <th>ISBN</th>
                         <th>Nombre</th>
                         <th>Editorial</th>
-                        <th>Total de páginas</th>
                         <th>Fecha de publicación</th>
-                        <th>Autor/es</th>
                         <th>Categoría</th>
+                        <th>Total de páginas</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($books as $book)
+                    @foreach ($books->get() as $book)
                         <tr class="text-center">
                             <td>
                                 <img src="{{ $book->image_link }}" alt="imagen del libro {{ $book->name }}"
@@ -40,21 +53,9 @@
                                 </a>
                             </td>
                             <td>{{ $book->publisher }}</td>
+                            <td>{{ date('d-m-Y', strtotime($book->published_at)) }}</td>
+                            <td>{{ $book->category }}</td>
                             <td>{{ $book->total_pages }}</td>
-                            <td>{{ date('d-m-Y', strtotime($book->published_at)) }} </td>
-                            <td>
-                                @foreach ($book->authors as $author)
-                                    <a href="/authors/{{ $author->id }}" class="fw-bold mb-1 text-decoration-none">
-                                        {{ $author->name }}
-                                    </a>
-                                    <br>
-                                @endforeach
-                            </td>
-                            <td>
-                                <a href="/categories/{{ $book->category()->first()->id }}" class="fw-bold mb-1 text-decoration-none">
-                                {{ $book->category()->first()->name }}
-                                </a>
-                            </td>
                         </tr>
                     @endforeach
                 </tbody>

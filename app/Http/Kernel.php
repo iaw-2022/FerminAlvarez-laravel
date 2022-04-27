@@ -72,5 +72,7 @@ class Kernel extends HttpKernel
         'canSeeSuscribers' => \App\Http\Middleware\CanSeeSuscribers::class,
         'canManageSuscribers' => \App\Http\Middleware\CanManageSuscribers::class,
         'canManageUsers' => \App\Http\Middleware\CanManageUsers::class,
+        'canSeeCategories' => \App\Http\Middleware\CanSeeCategories::class,
+        'canManageCategories' => \App\Http\Middleware\CanManageCategories::class,
     ];
 }

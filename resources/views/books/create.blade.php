@@ -41,12 +41,18 @@
                                 name="published_at">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="Categoría" name="category">
+                            <select name="category" id="" class="form-control" required>
+                                    <option value=""> Selecciona una categoría</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-6">
                             <input type="file" class="form-control" accept="image/*" onchange="loadFile(event)" name="image">
                             <img class = "mt-3 book-img" id="output"/>
                         </div>
+
                         <div class="col-12">
                             <div class="row">
                                 <div class="aligns-items-center mt-3 col-lg-12">

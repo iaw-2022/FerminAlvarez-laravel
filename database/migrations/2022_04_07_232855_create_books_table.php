@@ -19,9 +19,10 @@ return new class extends Migration
             $table->string('publisher')->nullable();
             $table->tinyInteger('total_pages')->nullable();
             $table->date('published_at')->nullable();
-            $table->string('category')->nullable();
             $table->string('image_link')->nullable();
             $table->string('image_path')->nullable();
+            $table->bigInteger('category');
+            $table->foreign('category')->references('id')->on('categories')->onDelete('restrict');
             $table->timestamps();
         });
     }

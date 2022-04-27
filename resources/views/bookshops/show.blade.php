@@ -75,7 +75,11 @@
                                     <br>
                                 @endforeach
                             </td>
-                            <td>{{ $book->category }}</td>
+                            <td>
+                                <a href="/categories/{{ $book->category()->first()->id }}" class="fw-bold mb-1 text-decoration-none">
+                                    {{ $book->category()->first()->name }}
+                                </a>
+                            </td>
                             <td>{{ $book->total_pages }}</td>
                         </tr>
                     @endforeach

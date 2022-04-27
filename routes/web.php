@@ -26,6 +26,8 @@ Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(
 
 Route::resource('users', 'App\Http\Controllers\UserController')->middleware(['auth']);
 
+Route::resource('categories', 'App\Http\Controllers\CategoryController')->middleware(['auth']);
+
 Route::get('/bookshop/{bookshop}/book/{ISBN}', [BookshopController::class, 'showOnlinePrice'])->middleware(['auth']);
 
 Route::put('/bookshop/{bookshop}/book/{ISBN}/update', [BookshopController::class, 'updatePrice'])->middleware(['auth']);

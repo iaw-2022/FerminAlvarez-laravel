@@ -40,4 +40,8 @@ class Book extends Model
     public function subscribers(){
         return $this->belongsToMany(Suscriber::class,'subscribed','ISBN','email');
     }
+
+    public function category(){
+        return $this->hasOne(Category::class,'id','category');
+    }
 }

@@ -22,7 +22,7 @@ class BookSeeder extends Seeder
                 'publisher' => 'Grijalbo Ilustrado',
                 'total_pages' => '336',
                 'published_at' => '2016-02-23',
-                'category' => 'Fiction',
+                'category' => '1',
                 'image_link' => '',
                 'image_path' => ''
             ],
@@ -32,7 +32,7 @@ class BookSeeder extends Seeder
                 'publisher' => 'Nova',
                 'total_pages' => '650',
                 'published_at' => '2018-02-27',
-                'category' => 'Fiction',
+                'category' => '2',
                 'image_link' => '',
                 'image_path' => ''
             ]
