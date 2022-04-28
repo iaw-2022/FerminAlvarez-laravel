@@ -25,7 +25,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view ('authors.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255'
+        ]);
+        $author = new Author();
+        $author->name = $request->get('name');
+        $author->save();
+
+        return redirect("/authors");
     }
 
     /**
@@ -48,6 +55,9 @@ class AuthorController extends Controller
     public function show($id)
     {
         $author = Author::find($id);
+        if($author==null)
+            abort(404);
+
         return view('authors.show')->with('author',$author);
     }
 
@@ -59,7 +69,10 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $author = Author::find($id);
+        if($author==null)
+            abort(404);
+        return view('authors.edit')->with('author',$author);
     }
 
     /**
@@ -71,7 +84,17 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255'
+        ]);
+
+        $author = Author::find($id);
+        if($author==null)
+            abort(404);
+        $author->name = $request->get('name');
+        $author->save();
+
+        return redirect("/authors/".$author->id);
     }
 
     /**
@@ -82,6 +105,15 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $author = Author::find($id);
+        if($author==null)
+            abort(404);
+
+        try{
+            $author->delete();
+        }catch(\Exception $e){
+            return redirect("/authors/".$author->id)->withErrors("El autor no se pudo eliminar, debe primero eliminar los libros a los que pertenece o quitar su autoría.");
+        }
+        return redirect("/authors");
     }
 }

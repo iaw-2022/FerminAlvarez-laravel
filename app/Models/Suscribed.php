@@ -10,6 +10,7 @@ class Suscribed extends Model
     use HasFactory;
 
     protected $table = 'subscribed';
+    protected $primaryKey = "id_suscriber";
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class Suscribed extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'email',
+        'id_suscriber',
         'ISBN'
     ];
 }

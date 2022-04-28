@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Suscribed;
 use Illuminate\Http\Request;
 use App\Models\Suscriber;
+use Illuminate\Support\Facades\DB;
 
 class SuscriberController extends Controller
 {
@@ -25,7 +28,8 @@ class SuscriberController extends Controller
      */
     public function create()
     {
-        //
+        $books = Book::all();
+        return view ('suscribers.create') -> with('books',$books);
     }
 
     /**
@@ -36,18 +40,38 @@ class SuscriberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email' => 'required|max:255'
+        ]);
+
+        $suscriber = new Suscriber();
+        $suscriber->email = $request->get('email');
+        $suscriber->save();
+
+        $books = $request->input('books');
+
+        foreach((array) $books as $book){
+            $suscribed = new Suscribed();
+            $suscribed->id_suscriber = $suscriber->id;
+            $suscribed->ISBN = $book;
+            $suscribed->save();
+        }
+
+        return redirect("/suscribers");
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $email
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($email)
+    public function show($id)
     {
-        $suscriber = Suscriber::find($email);
+        $suscriber = Suscriber::find($id);
+        if($suscriber==null)
+            abort(404);
+
         return view('suscribers.show', compact('suscriber'));
     }
 
@@ -59,7 +83,12 @@ class SuscriberController extends Controller
      */
     public function edit($id)
     {
-        //
+        $suscriber = Suscriber::find($id);
+        if($suscriber==null)
+            abort(404);
+
+        $books = Book::All();
+        return view('suscribers.edit')->with('suscriber',$suscriber)->with('books',$books);
     }
 
     /**
@@ -71,7 +100,36 @@ class SuscriberController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'email' => 'required|max:255'
+        ]);
+
+        $suscriber = Suscriber::find($id);
+        if($suscriber==null)
+            abort(404);
+
+        $suscriber->email = $request->get('email');
+        try{
+            $suscriber->save();
+            $books = $request->input('books');
+
+            $suscriber->books()->detach();
+            foreach((array) $books as $book){
+                $suscribed = new Suscribed();
+                $suscribed->id_suscriber = $suscriber->id;
+                $suscribed->ISBN = $book;
+                $suscribed->save();
+            }
+            DB::commit();
+
+        }catch(\Exception $e){
+            DB::rollback();
+            throw $e;
+        }
+
+
+
+        return redirect("/suscribers/".$suscriber->id);
     }
 
     /**
@@ -82,6 +140,11 @@ class SuscriberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $suscriber = Suscriber::find($id);
+        if($suscriber==null)
+            abort(404);
+
+        $suscriber->delete();
+        return redirect("/suscribers");
     }
 }

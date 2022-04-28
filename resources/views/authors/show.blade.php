@@ -1,18 +1,30 @@
 @extends('layouts.template')
 
-@section('title', 'Autores')
+@section('title', 'Autor')
 
 @section('content')
-
     <div class="card text-center ">
-    <div class="card-body ">
-        <h2 class="card-title">{{$author->name}}</h2>
-        <h3 class="card-subtitle">Código: {{$author->id}}</h3>
-        {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+        <div class="card-body ">
+            <h2 class="card-title">{{ $author->name }}</h2>
+            <h3 class="card-subtitle">Código: {{ $author->id }}</h3>
+            <a href="/authors/{{ $author->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+            <form action="/authors/{{ $author->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este autor?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+            </form>
         </div>
     </div>
-
     <div class="row">
+        @if ($errors->count() > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="aligns-items-center mt-3 col-lg-12">
             <table class="table align-middle table-striped display nowrap" cellspacing="0" id="authors-table" width=100%>
                 <thead class="bg-light text-center">
@@ -30,26 +42,24 @@
                     @foreach ($author->books as $book)
                         <tr class="text-center">
                             <td>
-                                <img src="{{$book->image_link}}"
-                                alt="imagen del libro {{$book->name}}"
-                                class="img-thumbnail img-responsive book-img">
+                                <img src="{{ $book->image_link }}" alt="imagen del libro {{ $book->name }}"
+                                    class="img-thumbnail img-responsive book-img">
                             </td>
-                            <td>{{$book->ISBN}}</td>
+                            <td>{{ $book->ISBN }}</td>
                             <td>
-                                <a href="/book/{{$book->ISBN}}" class ="fw-bold mb-1 text-decoration-none">
-                                    {{$book->name}}
+                                <a href="/books/{{ $book->ISBN }}" class="fw-bold mb-1 text-decoration-none">
+                                    {{ $book->name }}
                                 </a>
                             </td>
-                            <td>{{$book->publisher}}</td>
-                            <td>{{date('d-m-Y', strtotime($book->published_at))}}</td>
-                            <td>{{$book->category}}</td>
-                            <td>{{$book->total_pages}}</td>
+                            <td>{{ $book->publisher }}</td>
+                            <td>{{ date('d-m-Y', strtotime($book->published_at)) }}</td>
+                            <td>{{ $book->category }}</td>
+                            <td>{{ $book->total_pages }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
-    @section('table_name', 'authors-table')
+@section('table_name', 'authors-table')
 @endsection

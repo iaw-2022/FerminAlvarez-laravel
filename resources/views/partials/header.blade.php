@@ -50,61 +50,64 @@
     </nav>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function(event) {
-        const showNavbar = (toggleId, navId, bodyId, headerId) => {
-            const toggle = document.getElementById(toggleId),
-                nav = document.getElementById(navId),
-                bodypd = document.getElementById(bodyId),
-                headerpd = document.getElementById(headerId)
+@section('js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function(event) {
+            const showNavbar = (toggleId, navId, bodyId, headerId) => {
+                const toggle = document.getElementById(toggleId),
+                    nav = document.getElementById(navId),
+                    bodypd = document.getElementById(bodyId),
+                    headerpd = document.getElementById(headerId)
 
-            // Validate that all variables exist
-            if (toggle && nav && bodypd && headerpd) {
-                if (getCookie("open") == "true"){
-                    nav.classList.toggle('show')
-                    toggle.classList.toggle('bx-x')
-                    bodypd.classList.toggle('body-pd')
-                    headerpd.classList.toggle('body-pd')
+                // Validate that all variables exist
+                if (toggle && nav && bodypd && headerpd) {
+                    if (getCookie("open") == "true"){
+                        nav.classList.toggle('show')
+                        toggle.classList.toggle('bx-x')
+                        bodypd.classList.toggle('body-pd')
+                        headerpd.classList.toggle('body-pd')
+                    }
+
+                    toggle.addEventListener('click', () => {
+                        // show navbar
+                        nav.classList.toggle('show')
+                        // change icon
+                        toggle.classList.toggle('bx-x')
+                        // add padding to body
+                        bodypd.classList.toggle('body-pd')
+                        // add padding to header
+                        headerpd.classList.toggle('body-pd')
+                    })
                 }
-
-                toggle.addEventListener('click', () => {
-                    // show navbar
-                    nav.classList.toggle('show')
-                    // change icon
-                    toggle.classList.toggle('bx-x')
-                    // add padding to body
-                    bodypd.classList.toggle('body-pd')
-                    // add padding to header
-                    headerpd.classList.toggle('body-pd')
-                })
             }
+            showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+        });
+
+        document.getElementById("header-toggle").addEventListener("click",toggleCookie);
+
+        function toggleCookie(){
+            var openToggle = getCookie("open")
+            if (openToggle == "true")
+                document.cookie = "open = false; path=/;"
+            else
+                document.cookie = "open = true; path=/;"
         }
-        showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
-    });
 
-    document.getElementById("header-toggle").addEventListener("click",toggleCookie);
-
-    function toggleCookie(){
-        var openToggle = getCookie("open")
-        if (openToggle == "true")
-            document.cookie = "open = false"
-        else
-            document.cookie = "open = true"
-    }
-
-    function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(';');
-        for(let i = 0; i <ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) == ' ') {
-            c = c.substring(1);
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
             }
-            if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-            }
+            return "";
         }
-        return "";
-    }
-</script>
+    </script>
+    @parent
+@endsection

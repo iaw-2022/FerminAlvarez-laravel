@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('subscribed', function (Blueprint $table) {
-            $table->string('email');
-            $table->foreign('email')->references('email')->on('suscribers');
+            $table->bigInteger('id_suscriber');
+            $table->foreign('id_suscriber')->references('id')->on('suscribers')->onDelete('cascade');
             $table->string('ISBN');
-            $table->foreign('ISBN')->references('ISBN')->on('books');
+            $table->foreign('ISBN')->references('ISBN')->on('books')->onDelete('cascade')->onUpdate('cascade');;
             $table->timestamps();
         });
     }

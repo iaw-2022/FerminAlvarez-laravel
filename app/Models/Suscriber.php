@@ -22,6 +22,6 @@ class Suscriber extends Model
     ];
 
     public function books(){
-        return $this->belongsToMany(Book::class,'subscribed','email','ISBN','email','ISBN');
+        return $this->belongsToMany(Book::class,'subscribed','id_suscriber','ISBN','id','ISBN');
     }
 }

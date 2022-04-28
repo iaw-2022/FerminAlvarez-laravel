@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('written_by', function (Blueprint $table) {
-
-            $table->foreignId(Author::class);
+            $table->bigInteger('Author');
+            $table->foreign('Author')->references('id')->on('authors')->onDelete('restrict')->onUpdate('cascade');
             $table->string('ISBN');
-            $table->foreign('ISBN')->references('ISBN')->on('books');
+            $table->foreign('ISBN')->references('ISBN')->on('books')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

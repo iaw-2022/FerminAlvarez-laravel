@@ -18,18 +18,10 @@ Route::redirect('/', '/login');
 
 Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['auth']);
 
-Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth']);
-
 Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth']);
 
 Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middleware(['auth']);
 
-Route::get('/bookshop/{id}',[App\Http\Controllers\BookshopController::class, 'show'])->middleware(['auth']);
-
-Route::get('/book/{id}',[App\Http\Controllers\BookController::class, 'show'])->middleware(['auth']);
-
-Route::get('/suscriber/{email}',[App\Http\Controllers\SuscriberController::class, 'show'])->middleware(['auth']);
-
-Route::get('/author/{id}',[App\Http\Controllers\AuthorController::class, 'show'])->middleware(['auth']);
+Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth']);
 
 require __DIR__ . '/auth.php';

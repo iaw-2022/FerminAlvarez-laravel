@@ -10,6 +10,7 @@ class WrittenBy extends Model
     use HasFactory;
 
     protected $table = 'written_by';
+    protected $primaryKey = "Author";
 
     /**
      * The attributes that are mass assignable.
