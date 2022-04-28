@@ -34,18 +34,22 @@
                     <i class='bx bx-store nav_icon'></i>
                     <span class="text-light">Librerías</span>
                 </a>
-                <a href="/categories" class="nav_link">
-                    <i class='bx bx-category nav_icon'></i>
-                    <span class="text-light">Categorías</span>
-                </a>
+                @if(Auth::user()->hasRole()=="admin" || Auth::user()->hasRole()=="bookshop")
+                    <a href="/categories" class="nav_link">
+                        <i class='bx bx-category nav_icon'></i>
+                        <span class="text-light">Categorías</span>
+                    </a>
+                @endif
                 <a href="/suscribers" class="nav_link">
                     <i class='bx bx-book-reader nav_icon'></i>
                     <span class="text-light">Suscriptores</span>
                 </a>
-                <a href="/users" class="nav_link">
-                    <i class='bx bx-user-plus nav_icon'></i>
-                    <span class="text-light">Usuarios</span>
-                </a>
+                @if(Auth::user()->hasRole()=="admin")
+                    <a href="/users" class="nav_link">
+                        <i class='bx bx-user-plus nav_icon'></i>
+                        <span class="text-light">Usuarios</span>
+                    </a>
+                @endif
 
             </div>
         </div>
