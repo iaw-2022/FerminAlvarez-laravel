@@ -80,6 +80,7 @@ class BookController extends Controller
         $book->published_at = $request->get('published_at');
         $book->category = $request->get('category');
         $book->image_link = $uploadedFile->getPath();
+        $book->image_path = $uploadedFile->getPublicId();
         $book->save();
 
         $authors = $request->input('author');
