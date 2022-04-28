@@ -9,8 +9,7 @@ use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Spatie\Dropbox\Client as client;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class BookController extends Controller
 {
@@ -19,7 +18,6 @@ class BookController extends Controller
         $this->middleware('auth');
         $this->middleware('canSeeBooks')->only('index','show');
         $this->middleware('canManageBooks')->except('index','show');
-        $this->client = new client(env('DROPBOX_TOKEN'));
     }
     /**
      * Display a listing of the resource.
@@ -68,10 +66,10 @@ class BookController extends Controller
             return redirect("/books/create")->withErrors("Ya existe ese ISBN");
 
         try{
-            $image_path = $this->saveImage($request->file('image'));
-            $image_link = $this->generatePublicLink($image_path);
+            $image = $request->file('image');
+            $uploadedFile = $image->storeOnCloudinary('/books');
         }catch (Exception $e){
-            return redirect("/books/create")->withErrors("Ocurrió un error al almacenar la imagen\n $e");
+            return redirect("/books/create")->withErrors("Ocurrió un error al almacenar la imagen\n");
         }
 
         $book = new Book();
@@ -81,9 +79,7 @@ class BookController extends Controller
         $book->total_pages = $request->get('total_pages');
         $book->published_at = $request->get('published_at');
         $book->category = $request->get('category');
-        $book->image_link = $image_link;
-        $book->image_path = $image_path;
-
+        $book->image_link = $uploadedFile->getPath();
         $book->save();
 
         $authors = $request->input('author');
@@ -99,16 +95,7 @@ class BookController extends Controller
         return redirect("/books");
     }
 
-    private function saveImage($image){
-        $image_created = Storage::disk('dropbox')->put("/images", $image);
-        return $image_created;
-    }
 
-    private function generatePublicLink($image_created){
-        $response_link = $this->client->createSharedLinkWithSettings($image_created);
-        $public_link = str_replace('dl=0','raw=1',$response_link['url']);
-        return $public_link;
-    }
 
 
     /**
@@ -176,14 +163,13 @@ class BookController extends Controller
 
         if($image != null){
             try{
-                $this->deleteImage($book->image_path);
-                $image_path = $this->saveImage($request->file('image'));
-                $image_link = $this->generatePublicLink($image_path);
+                Cloudinary::destroy($book->image_path);
+                $uploadedFile = $image->storeOnCloudinary('/books');
             }catch (Exception $e){
                 return redirect("/books/$id/edit")->withErrors("Ocurrió un error al almacenar la imagen\n");
             }
-            $book->image_link = $image_link;
-            $book->image_path = $image_path;
+            $book->image_link = $uploadedFile->getPath();
+            $book->image_path = $uploadedFile->getPublicId();
         }
 
         try{
@@ -207,10 +193,6 @@ class BookController extends Controller
 
 
         return redirect("/books/".$book->ISBN);
-    }
-
-    private function deleteImage($image){
-        $img_created = Storage::disk('dropbox')->delete($image);
     }
 
     /**

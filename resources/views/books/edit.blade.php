@@ -16,7 +16,7 @@
                     </div>
                 @endif
                 <div class="col-12">
-                    <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Nuevo Libro</h3>
+                    <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Editar Libro</h3>
                 </div>
                 <form action="/books/{{ $book->ISBN }}" enctype="multipart/form-data" method="POST">
                     @csrf
