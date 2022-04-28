@@ -209,7 +209,7 @@ class BookController extends Controller
             abort(404);
 
         if($book->image_path != null)
-            $this->deleteImage($book->image_path);
+            Cloudinary::destroy($book->image_path);
 
         $book->delete();
         return redirect("/books");
