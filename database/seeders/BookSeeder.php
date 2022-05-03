@@ -22,7 +22,7 @@ class BookSeeder extends Seeder
                 'publisher' => 'Grijalbo Ilustrado',
                 'total_pages' => '336',
                 'published_at' => '2016-02-23',
-                'category' => '1',
+                'category' => '2',
                 'image_link' => '',
                 'image_path' => ''
             ],
@@ -33,6 +33,36 @@ class BookSeeder extends Seeder
                 'total_pages' => '650',
                 'published_at' => '2018-02-27',
                 'category' => '2',
+                'image_link' => '',
+                'image_path' => ''
+            ],
+            [
+                'ISBN' => '9788466658843',
+                'name' => 'Elantris',
+                'publisher' => 'Nova',
+                'total_pages' => '800',
+                'published_at' => '2016-01-01',
+                'category' => '2',
+                'image_link' => '',
+                'image_path' => ''
+            ],
+            [
+                'ISBN' => '9788466659840',
+                'name' => 'Calamity',
+                'publisher' => 'Nova',
+                'total_pages' => '416',
+                'published_at' => '2017-01-01',
+                'category' => '1',
+                'image_link' => '',
+                'image_path' => ''
+            ],
+            [
+                'ISBN' => '9788499088990',
+                'name' => 'Trilogía de Aléxandros',
+                'publisher' => 'Nova',
+                'total_pages' => '1040',
+                'published_at' => '2010-01-01',
+                'category' => '3',
                 'image_link' => '',
                 'image_path' => ''
             ]

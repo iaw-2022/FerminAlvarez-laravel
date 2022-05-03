@@ -20,6 +20,9 @@ class CategorySeeder extends Seeder
                     'name' => "Ficción"
                 ],
                 [
+                    'name' => "Fantasía"
+                ],
+                [
                     'name' => "Novela Historica"
                 ]
         ];

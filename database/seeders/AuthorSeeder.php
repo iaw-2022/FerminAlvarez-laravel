@@ -26,7 +26,10 @@ class AuthorSeeder extends Seeder
                 'name' => 'Elio M. García',
             ],
             [
-                'name' => ' Linda Antonsson',
+                'name' => 'Linda Antonsson',
+            ],
+            [
+                'name' => 'Valerio Massimo Manfredi',
             ]
         ];
 
