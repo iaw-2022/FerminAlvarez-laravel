@@ -164,7 +164,8 @@ class BookController extends Controller
 
         if($image != null){
             try{
-                Cloudinary::destroy($book->image_path);
+                if($book->image_path != null)
+                    Cloudinary::destroy($book->image_path);
                 $uploadedFile = $image->storeOnCloudinary('/books');
             }catch (Exception $e){
                 return redirect("/books/$id/edit")->withErrors("Ocurrió un error al almacenar la imagen\n");

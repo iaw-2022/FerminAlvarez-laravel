@@ -32,9 +32,24 @@ class HasSeeder extends Seeder
                 'Bookshop' => '2'
             ],
             [
+                'price' => '3200',
+                'ISBN' => '9788499088990',
+                'Bookshop' => '4'
+            ],
+            [
+                'price' => '3600',
+                'ISBN' => '9788466659840',
+                'Bookshop' => '4'
+            ],
+            [
+                'price' => '4199',
+                'ISBN' => '9788466658843',
+                'Bookshop' => '4'
+            ],
+            [
                 'price' => '4199',
                 'ISBN' => '9788466662321',
-                'Bookshop' => '1'
+                'Bookshop' => '4'
             ]
         ];
         DB::table('has')->insert($data);
