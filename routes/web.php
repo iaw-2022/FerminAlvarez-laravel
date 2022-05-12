@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/login');
 
+Route::redirect('/register', '/register');
+
 Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['auth']);
 
 Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth']);
