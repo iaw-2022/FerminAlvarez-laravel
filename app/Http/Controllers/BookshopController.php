@@ -5,11 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Bookshop;
 use App\Models\Has;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class BookshopController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('canSeeBookshops')->only('index','show');
+        $this->middleware('canManageBookshops')->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +37,8 @@ class BookshopController extends Controller
     public function create()
     {
         $books = Book::all();
-        return view ('bookshops.create') -> with('books',$books);
+        $users = User::all();
+        return view ('bookshops.create')->with('books',$books)-> with('users',$users);
     }
 
     /**
@@ -45,6 +54,7 @@ class BookshopController extends Controller
             'city' => 'nullable|max:255',
             'street' => 'nullable|max:255',
             'number' => 'nullable|max:255',
+            'user' => 'required|integer',
             'prices.*' => 'gt:0'
         ]);
 
@@ -54,6 +64,7 @@ class BookshopController extends Controller
         $bookshop->city = $request->get('city');
         $bookshop->street = $request->get('street');
         $bookshop->number = $request->get('number');
+        $bookshop->user_id = $request->get('user');
 
         $bookshop->save();
 
@@ -100,8 +111,9 @@ class BookshopController extends Controller
         if($bookshop==null)
             abort(404);
 
+        $users = User::All();
         $books = Book::All();
-        return view('bookshops.edit')->with('bookshop',$bookshop)->with('books',$books);
+        return view('bookshops.edit')->with('bookshop',$bookshop)->with('books',$books)->with('users',$users);
     }
 
     /**
@@ -118,6 +130,7 @@ class BookshopController extends Controller
             'city' => 'nullable|max:255',
             'street' => 'nullable|max:255',
             'number' => 'nullable|max:255',
+            'user' => 'required|integer',
             'prices.*' => 'gt:0'
         ]);
 
@@ -130,6 +143,7 @@ class BookshopController extends Controller
         $bookshop->city = $request->get('city');
         $bookshop->street = $request->get('street');
         $bookshop->number = $request->get('number');
+        $bookshop->user_id = $request->get('user');
         try {
             // Begin a transaction
             DB::beginTransaction();
@@ -171,5 +185,67 @@ class BookshopController extends Controller
 
         $bookshop->delete();
         return redirect("/bookshops");
+    }
+
+    public function showOnlinePrice($id , $ISBN){
+        $bookshop = Bookshop::find($id);
+        if($bookshop==null)
+            abort(404);
+
+        $bookshopReference = $this->getURL($bookshop->name);
+        $request = $this->callAPI($bookshopReference,$ISBN);
+
+        if($request->status() != 200){
+            return redirect("/bookshops/".$bookshop->id)->withErrors(["No se pudo encontrar el precio en línea",
+            "El ISBN es incorrecto o no está publicado en la página de la librería"]);
+        }
+
+        $onlinePrice = $request->json();
+
+        $book = $bookshop->books()->find($ISBN);
+        return view ('bookshops.price')->with('book',$book)->with('onlinePrice',$onlinePrice)->with('bookshopID',$bookshop->id);
+    }
+
+    private function getURL($bookshopName){
+        $URL = null;
+        if($bookshopName != null){
+            if ($bookshopName == "Librería Don Quijote") {
+                $URL = "libreriadonquijote";
+            } elseif ($bookshopName == "Cúspide") {
+                $URL = "cuspide";
+            } elseif ($bookshopName == "BuscaLibre") {
+                $URL = "buscalibre";
+            } elseif ($bookshopName == "Tematika") {
+                $URL = "tematika";
+            }
+        }
+        return $URL;
+    }
+
+    private function callAPI($bookshopReference, $ISBN){
+        $APIUrl = env('SCRAPPING_API');
+        return HTTP::get($APIUrl.'/'.$bookshopReference.'/'.$ISBN);
+    }
+
+    public function updatePrice(Request $request, $id, $ISBN)
+    {
+        $request->validate([
+            'price' => 'required|integer',
+            'id' => 'integer',
+            'ISBN' => 'integer'
+        ]);
+
+
+        $price = $request->get('price');
+
+        $bookshop = Bookshop::find($id);
+        if($bookshop==null)
+            abort(404);
+
+        $has = Has::find([$id, $ISBN])[0];
+        $has->price = $price;
+        $has->save();
+
+        return redirect("/bookshops/".$bookshop->id);
     }
 }

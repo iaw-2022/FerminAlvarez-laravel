@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Nuevo Libro</h3>
                 </div>
-                <form action="/books" method="POST">
+                <form action="/books" enctype="multipart/form-data" method="POST">
                     @csrf
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -41,11 +41,18 @@
                                 name="published_at">
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="Categoría" name="category">
+                            <select name="category" id="" class="form-control" required>
+                                    <option value=""> Selecciona una categoría</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="IMAGE_LINK" name="image_link">
+                            <input type="file" class="form-control" accept="image/*" onchange="loadFile(event)" name="image">
+                            <img class = "mt-3 book-img" id="output"/>
                         </div>
+
                         <div class="col-12">
                             <div class="row">
                                 <div class="aligns-items-center mt-3 col-lg-12">
@@ -91,5 +98,16 @@
             </div>
         </div>
     </div>
+    @section('js')
+        <script>
+            var loadFile = function(event) {
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+                output.onload = function() {
+                    URL.revokeObjectURL(output.src)
+                }
+            };
+        </script>
+    @endsection
 @section('table_name', 'authors-table')
 @endsection

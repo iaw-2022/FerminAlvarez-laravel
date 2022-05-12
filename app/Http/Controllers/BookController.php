@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\WrittenBy;
+use App\Models\Category;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class BookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('canSeeBooks')->only('index','show');
+        $this->middleware('canManageBooks')->except('index','show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,7 +40,8 @@ class BookController extends Controller
     public function create()
     {
         $authors = Author::all();
-        return view ('books.create') -> with('authors',$authors);
+        $categories = Category::all();
+        return view ('books.create') -> with('authors',$authors) -> with('categories',$categories);
     }
 
     /**
@@ -49,14 +59,18 @@ class BookController extends Controller
             'total_pages' => 'integer',
             'published_at' => 'nullable|date',
             'category' => 'max:255',
-            'image' => ''
+            'image' => 'required|image|max:1000'
         ]);
 
-        if(Book::find($request->get('ISBN')) != null){
+        if(Book::find($request->get('ISBN')) != null)
             return redirect("/books/create")->withErrors("Ya existe ese ISBN");
-        }else
 
-
+        try{
+            $image = $request->file('image');
+            $uploadedFile = $image->storeOnCloudinary('/books');
+        }catch (Exception $e){
+            return redirect("/books/create")->withErrors("Ocurrió un error al almacenar la imagen\n");
+        }
 
         $book = new Book();
         $book->ISBN = $request->get('ISBN');
@@ -65,8 +79,8 @@ class BookController extends Controller
         $book->total_pages = $request->get('total_pages');
         $book->published_at = $request->get('published_at');
         $book->category = $request->get('category');
-        $book->image_link = $request->get('image_link');
-
+        $book->image_link = $uploadedFile->getPath();
+        $book->image_path = $uploadedFile->getPublicId();
         $book->save();
 
         $authors = $request->input('author');
@@ -81,6 +95,9 @@ class BookController extends Controller
 
         return redirect("/books");
     }
+
+
+
 
     /**
      * Display the specified resource.
@@ -110,7 +127,8 @@ class BookController extends Controller
             abort(404);
 
         $authors = Author::All();
-        return view('books.edit')->with('book',$book)->with('authors',$authors);
+        $categories = Category::all();
+        return view('books.edit')->with('book',$book)->with('authors',$authors)->with('categories',$categories);
     }
 
     /**
@@ -141,7 +159,20 @@ class BookController extends Controller
         $book->total_pages = $request->get('total_pages');
         $book->published_at = $request->get('published_at');
         $book->category = $request->get('category');
-        $book->image_link = $request->get('image_link');
+
+        $image = $request->file('image');
+
+        if($image != null){
+            try{
+                if($book->image_path != null)
+                    Cloudinary::destroy($book->image_path);
+                $uploadedFile = $image->storeOnCloudinary('/books');
+            }catch (Exception $e){
+                return redirect("/books/$id/edit")->withErrors("Ocurrió un error al almacenar la imagen\n");
+            }
+            $book->image_link = $uploadedFile->getPath();
+            $book->image_path = $uploadedFile->getPublicId();
+        }
 
         try{
             DB::beginTransaction();
@@ -177,6 +208,9 @@ class BookController extends Controller
         $book = Book::find($ISBN);
         if($book==null)
             abort(404);
+
+        if($book->image_path != null)
+            Cloudinary::destroy($book->image_path);
 
         $book->delete();
         return redirect("/books");

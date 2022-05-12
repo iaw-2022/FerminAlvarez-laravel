@@ -6,13 +6,14 @@
     <div class="card text-center ">
         <div class="card-body ">
             <h2 class="card-title">{{ $author->name }}</h2>
-            <h3 class="card-subtitle">Código: {{ $author->id }}</h3>
-            <a href="/authors/{{ $author->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-            <form action="/authors/{{ $author->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este autor?')">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
-            </form>
+            @if(Auth::user()->hasRole()=="admin")
+                <a href="/authors/{{ $author->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+                <form action="/authors/{{ $author->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este autor?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+                </form>
+            @endif
         </div>
     </div>
     <div class="row">
@@ -53,7 +54,11 @@
                             </td>
                             <td>{{ $book->publisher }}</td>
                             <td>{{ date('d-m-Y', strtotime($book->published_at)) }}</td>
-                            <td>{{ $book->category }}</td>
+                            <td>
+                                <a href="/categories/{{ $book->category()->first()->id  }}" class="fw-bold mb-1 text-decoration-none">
+                                    {{ $book->category()->first()->name }}
+                                </a>
+                            </td>
                             <td>{{ $book->total_pages }}</td>
                         </tr>
                     @endforeach

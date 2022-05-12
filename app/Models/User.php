@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -41,4 +42,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function hasRole(){
+        return $this->hasOne(Role::class, 'id','role')->first()->role;
+    }
+
+    public function bookshop($id){
+        return $this->belongsTo(Bookshop::class, 'id','user_id')->where('bookshops.id',$id)->first();
+    }
 }

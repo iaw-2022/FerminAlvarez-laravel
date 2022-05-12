@@ -9,17 +9,20 @@
             class="img-thumbnail img-responsive book-img">
             <h2 class="card-title">{{$book->name}}</h2>
             <h3 class="card-subtitle">{{$book->ISBN}}</h3>
+            <h3 class="card-subtitle">{{$book->category()->first()->name}}</h3>
             <ul class="list-group list-group-flush">
                 @foreach ($book->authors as $author)
                     <li class="list-group-item">{{$author->name}}</li>
                 @endforeach
             </ul>
-            <a href="/books/{{ $book->ISBN }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-            <form action="/books/{{ $book->ISBN }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este libro?')">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
-            </form>
+            @if(Auth::user()->hasRole()=="admin")
+                <a href="/books/{{ $book->ISBN }}/edit" class="btn btn-outline-primary my-3">Editar</a>
+                <form action="/books/{{ $book->ISBN }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este libro?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
+                </form>
+            @endif
         </div>
     </div>
     <div class="row">

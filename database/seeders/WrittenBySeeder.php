@@ -31,6 +31,18 @@ class WrittenBySeeder extends Seeder
             [
                 'Author' => '2',
                 'ISBN' => '9788466662321',
+            ],
+            [
+                'Author' => '2',
+                'ISBN' => '9788466658843',
+            ],
+            [
+                'Author' => '2',
+                'ISBN' => '9788466659840',
+            ],
+            [
+                'Author' => '5',
+                'ISBN' => '9788499088990',
             ]
         ];
 

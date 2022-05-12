@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('canSeeAuthors')->only('index','show');
+        $this->middleware('canManageAuthors')->except('index','show');
+    }
     /**
      * Display a listing of the resource.
      *

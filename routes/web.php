@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookshopController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +23,14 @@ Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middlew
 Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middleware(['auth']);
 
 Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth']);
+
+Route::resource('users', 'App\Http\Controllers\UserController')->middleware(['auth']);
+
+Route::resource('categories', 'App\Http\Controllers\CategoryController')->middleware(['auth']);
+
+Route::get('/bookshop/{bookshop}/book/{ISBN}', [BookshopController::class, 'showOnlinePrice'])->middleware(['auth']);
+
+Route::put('/bookshop/{bookshop}/book/{ISBN}/update', [BookshopController::class, 'updatePrice'])->middleware(['auth']);
+
 
 require __DIR__ . '/auth.php';
