@@ -22,7 +22,9 @@ Route::resource('books', 'App\Http\Controllers\BookController')->middleware(['au
 
 Route::resource('bookshops', 'App\Http\Controllers\BookshopController')->middleware(['auth']);
 
-Route::resource('suscribers', 'App\Http\Controllers\SuscriberController')->middleware(['auth']);
+Route::resource('suscribers', 'App\Http\Controllers\SuscriberController', [
+    'only' => ['index','show','edit','update']
+])->middleware(['auth']);
 
 Route::resource('authors', 'App\Http\Controllers\AuthorController')->middleware(['auth']);
 

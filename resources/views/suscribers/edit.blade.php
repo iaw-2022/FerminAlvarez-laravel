@@ -16,16 +16,12 @@
                     </div>
                 @endif
                 <div class="col-12">
-                    <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Editar suscriptor</h3>
+                    <h3 class="fw-normal text-secondary fs-4 text-uppercase mb-4">Editar suscriptor {{$suscriber->email}}</h3>
                 </div>
                 <form action="/suscribers/{{ $suscriber->id }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row g-3">
-                        <div class="col-md-12">
-                            <input type="email" class="form-control" placeholder="email" name="email" required="required"
-                                value="{{ $suscriber->email }}">
-                        </div>
                         <table class="table align-middle table-striped display nowrap" cellspacing="0" id="books-table"
                             width=100%>
                             <thead class="bg-light text-center">

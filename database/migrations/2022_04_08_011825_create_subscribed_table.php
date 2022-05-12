@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('subscribed', function (Blueprint $table) {
-            $table->bigInteger('id_suscriber');
-            $table->foreign('id_suscriber')->references('id')->on('suscribers')->onDelete('cascade');
+            $table->bigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->string('ISBN');
             $table->foreign('ISBN')->references('ISBN')->on('books')->onDelete('cascade')->onUpdate('cascade');
-            $table->primary(['id_suscriber','ISBN']);
+            $table->primary(['id_user','ISBN']);
             $table->timestamps();
         });
     }

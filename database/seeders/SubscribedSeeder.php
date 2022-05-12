@@ -17,19 +17,19 @@ class SubscribedSeeder extends Seeder
     {
         $data = [
             [
-                'id_suscriber' => '1',
+                'id_user' => '1',
                 'ISBN' => '9786073132411',
             ],
             [
-                'id_suscriber' => '1',
+                'id_user' => '1',
                 'ISBN' => '9788466662321',
             ],
             [
-                'id_suscriber' => '2',
+                'id_user' => '2',
                 'ISBN' => '9786073132411',
             ],
             [
-                'id_suscriber' => '3',
+                'id_user' => '3',
                 'ISBN' => '9786073132411',
             ]
         ];

@@ -40,11 +40,11 @@
                         <span class="text-light">Categorías</span>
                     </a>
                 @endif
-                <a href="/suscribers" class="nav_link">
-                    <i class='bx bx-book-reader nav_icon'></i>
-                    <span class="text-light">Suscriptores</span>
-                </a>
                 @if(Auth::user()->hasRole()=="admin")
+                    <a href="/suscribers" class="nav_link">
+                        <i class='bx bx-book-reader nav_icon'></i>
+                        <span class="text-light">Suscriptores</span>
+                    </a>
                     <a href="/users" class="nav_link">
                         <i class='bx bx-user-plus nav_icon'></i>
                         <span class="text-light">Usuarios</span>

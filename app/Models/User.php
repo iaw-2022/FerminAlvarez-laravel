@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function bookshop($id){
         return $this->belongsTo(Bookshop::class, 'id','user_id')->where('bookshops.id',$id)->first();
     }
+
+    public function books(){
+        return $this->belongsToMany(Book::class,'subscribed','id_user','ISBN','id','ISBN');
+    }
 }
