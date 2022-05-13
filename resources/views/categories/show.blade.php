@@ -8,11 +8,7 @@
             <h2 class="card-title"> Libros de la categoría {{ $category->name }}</h2>
             @if(Auth::user()->hasRole()=="admin")
                 <a href="/categories/{{ $category->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-                <form action="/categories/{{ $category->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este categoría?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
-                </form>
+                <button type="submit" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="{{$category->id}}">Eliminar</button>
             @endif
         </div>
     </div>
@@ -70,11 +66,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ¿Está seguro que desea eliminar el autor {{$author->name}}?
+                    ¿Está seguro que desea eliminar la categoría {{$category->name}}?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <form id="deleteForm" data-bs-action="/authors/" action="" method="POST">
+                    <form id="deleteForm" data-bs-action="/categories/" action="" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Eliminar</button>

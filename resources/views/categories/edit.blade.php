@@ -28,54 +28,45 @@
                         </div>
                         <div class="col-12 mt-5">
                             <button type="submit" class="btn btn-primary float-end" id="submit">Guardar Categoría</button>
-                            <button type="submit" class="btn btn-outline-danger" form="deleteForm">Eliminar</button>
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="{{$category->id}}">Eliminar</button>
                             <button type="button" class="btn btn-outline-secondary float-end me-2">
                                 <a href="/categories">Cancelar</a>
                             </button>
                         </div>
                 </form>
-                <div class="col-12 mt-5">
-                    <form action="/categories/{{ $category->id }}" method="POST" class="d-inline" id="deleteForm"
-                        onsubmit="return confirm('¿Estás seguro que deseas eliminar este autor?')">
-                        @csrf
-                        @method('DELETE')
-                    </form>
-                </div>
-
             </div>
         </div>
     </div>
     <div class="modal fade text-dark" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ¿Está seguro que desea eliminar la categoría {{$category->name}}?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <form id="deleteForm" data-bs-action="/categories/" action="" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-primary">Eliminar</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    ¿Está seguro que desea eliminar el autor {{$author->name}}?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <form id="deleteForm" data-bs-action="/authors/" action="" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                    </form>
-                </div>
-            </div>
         </div>
-    </div>
     @section('js')
     <script>
-        var deleteModal = document.getElementById('deleteModal')
-        deleteModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget
-            var id = button.getAttribute('data-bs-id')
-            var deleteForm = deleteModal.querySelector('#deleteForm')
-            var action = deleteForm.getAttribute("data-bs-action")
-            deleteForm.setAttribute("action",action+id)
-        })
-</script>
-@endsection
+            var deleteModal = document.getElementById('deleteModal')
+            deleteModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget
+                var id = button.getAttribute('data-bs-id')
+                var deleteForm = deleteModal.querySelector('#deleteForm')
+                var action = deleteForm.getAttribute("data-bs-action")
+                deleteForm.setAttribute("action",action+id)
+            })
+    </script>
+    @endsection
 @endsection
