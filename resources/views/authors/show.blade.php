@@ -8,11 +8,7 @@
             <h2 class="card-title">{{ $author->name }}</h2>
             @if(Auth::user()->hasRole()=="admin")
                 <a href="/authors/{{ $author->id }}/edit" class="btn btn-outline-primary my-3">Editar</a>
-                <form action="/authors/{{ $author->id }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro que deseas eliminar este autor?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-outline-danger ">Eliminar</button>
-                </form>
+                <button type="submit" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="{{$author->id}}">Eliminar</button>
             @endif
         </div>
     </div>
@@ -66,5 +62,38 @@
             </table>
         </div>
     </div>
-@section('table_name', 'authors-table')
+    <div class="modal fade text-dark" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro que desea eliminar el autor {{$author->name}}?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form id="deleteForm" data-bs-action="/authors/" action="" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section('table_name', 'authors-table')
+    @section('js')
+        <script>
+            var deleteModal = document.getElementById('deleteModal')
+            deleteModal.addEventListener('show.bs.modal', function (event) {
+                var button = event.relatedTarget
+                var id = button.getAttribute('data-bs-id')
+                var deleteForm = deleteModal.querySelector('#deleteForm')
+                var action = deleteForm.getAttribute("data-bs-action")
+                deleteForm.setAttribute("action",action+id)
+            })
+    </script>
+    @endsection
 @endsection

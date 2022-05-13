@@ -63,7 +63,7 @@
     </nav>
 </div>
 
-@section('js')
+@section('js-header')
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
             const showNavbar = (toggleId, navId, bodyId, headerId) => {
@@ -75,7 +75,7 @@
                 // Validate that all variables exist
                 if (toggle && nav && bodypd && headerpd) {
                     if (getCookie("open") == "true"){
-                        nav.classList.toggle('show')
+                        nav.classList.toggle('showBar')
                         toggle.classList.toggle('bx-x')
                         bodypd.classList.toggle('body-pd')
                         headerpd.classList.toggle('body-pd')
@@ -83,7 +83,7 @@
 
                     toggle.addEventListener('click', () => {
                         // show navbar
-                        nav.classList.toggle('show')
+                        nav.classList.toggle('showBar')
                         // change icon
                         toggle.classList.toggle('bx-x')
                         // add padding to body

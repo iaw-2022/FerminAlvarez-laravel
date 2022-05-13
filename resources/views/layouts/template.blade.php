@@ -42,6 +42,7 @@
           responsive:true
       });});
     </script>
+    @yield('js-header')
     @yield('js')
   </body>
 
