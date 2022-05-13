@@ -55,20 +55,12 @@
                         </div>
                         <div class="col-12 mt-5">
                             <button type="submit" class="btn btn-primary float-end" id="submit">Guardar Usuario</button>
-                            <button type="submit" class="btn btn-outline-danger" form="deleteForm">Eliminar</button>
+                            <button type="button"  class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="{{$user->id}}">Eliminar</button>
                             <button type="button" class="btn btn-outline-secondary float-end me-2">
                                 <a href="/users">Cancelar</a>
                             </button>
                         </div>
                 </form>
-                <div class="col-12 mt-5">
-                    <form action="/users/{{ $user->id }}" method="POST" class="d-inline" id="deleteForm"
-                        onsubmit="return confirm('¿Estás seguro que deseas eliminar este autor?')">
-                        @csrf
-                        @method('DELETE')
-                    </form>
-                </div>
-
             </div>
         </div>
     </div>
@@ -80,11 +72,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ¿Está seguro que desea eliminar el autor {{$author->name}}?
+                    ¿Está seguro que desea eliminar el usuario {{$user->email}}?
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <form id="deleteForm" data-bs-action="/authors/" action="" method="POST">
+                    <form id="deleteForm" data-bs-action="/users/" action="" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -110,6 +102,15 @@
                 submit.setAttribute("disabled","disabled");
             }
         }
+
+        var deleteModal = document.getElementById('deleteModal')
+         deleteModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget
+            var id = button.getAttribute('data-bs-id')
+            var deleteForm = deleteModal.querySelector('#deleteForm')
+            var action = deleteForm.getAttribute("data-bs-action")
+            deleteForm.setAttribute("action",action+id)
+        })
     </script>
-@endsection
+    @endsection
 @endsection
