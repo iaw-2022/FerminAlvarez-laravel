@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('ISBN')->references('ISBN')->on('books')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('Bookshop');
             $table->foreign('Bookshop')->references('id')->on('bookshops')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
